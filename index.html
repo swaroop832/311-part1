@@ -12,7 +12,7 @@
     <SCRIPT SRC="app.js"></SCRIPT>
     <style>
         /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-        .row.content {height: 2000px}
+        .row.content {height: 1000px}
 
         /* Set gray background color and 100% height */
         .sidenav {
@@ -73,53 +73,47 @@
             <div class="tab content">
 
                 <div id="home" class="tab-pane fade in active">
-                    <h4>
-                        <small>RECENT POSTS</small>
-                    </h4>
-                    <hr>
-                    <h2>I Love Food</h2>
-                    <p>Food is my passion. Lorem ipsum dolor sit amet, consectetu</p>
                 </div>
-
                 <!--Kansas city-->
-
                 <div id="Kansas_City" class="tab-pane fade">
-                    <h2>Kansas City</h2>
-                    <div class="col-md-4">
-                        <table class="table table-primary table-bodered text-primary text-center">
-                            <thead>
-                            <tr class="text-center">
-                                <th style="text-align: center">year</th>
-                                <th style="text-align: center"> No. of requests</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="x in kcvalue">
-                                <td>{{x.creation_year}}</td>
-                                <td>{{x.count_case_id}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                    <h2 class="page-header text-center text-primary">Kansas City</h2>
+                    <div class="text-center">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4">
+                            <table class="table table-primary table-bodered text-primary text-center">
+                                <thead>
+                                <tr class="text-center">
+                                    <th style="text-align: center">year</th>
+                                    <th style="text-align: center"> No. of requests</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="x in kcvalue | limitTo : 7  : 4">
+                                    <td>{{x.creation_year}}</td>
+                                    <td>{{x.count_case_id}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <table class="table table-primary table-bodered text-primary text-center">
+                                <thead>
+                                <tr class="text-center">
+                                    <th style="text-align: center">year</th>
+                                    <th style="text-align: center"> Population</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="x in population">
+                                    <td>{{x.Year}}</td>
+                                    <td>{{x.Kansas_City}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <table class="table table-primary table-bodered text-primary text-center">
-                            <thead>
-                            <tr class="text-center">
-                                <th style="text-align: center">year</th>
-                                <th style="text-align: center"> Population</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="x in population">
-                                <td>{{x.Year}}</td>
-                                <td>{{x.Kansas_City}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
                     <div class="container-fluid text-center">
-                        <div class="row">
+                        <div class="chart">
                             <div id="kc_chart1" style="width: 900px; height: 500px; float: left"></div>
                             <div id="kc_chart2" style="width: 900px; height: 500px; float: left"></div>
                         </div>
