@@ -1,0 +1,80 @@
+<html>
+<head>
+    <title>
+        City Comparison
+    </title>
+    <script src="js/angular.min.js"></script>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+    div.main{
+        margin: auto;
+        width : 500px;
+        height: 60px;
+        padding: 188px 0px;
+
+
+    }
+    div.second{
+        text-align: center;
+
+    }
+    div.first{
+        text-align: center;
+
+    }
+    .button {
+        border-radius: 4px;
+        background-color: #f4511e;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 28px;
+        padding: 10px;
+        width: 305px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 0px;
+    }
+
+    .button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+
+    .button span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+
+    .button:hover span {
+        padding-right: 25px;
+    }
+
+    .button:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+</style>
+</head>
+
+<body>
+<div class="main">
+    <div class="first">
+        <span style="font-size: 30px;">Welcome To City Comparision</span><br/><br/>
+    </div>
+    <div class="second">
+         <button class="button"><span>City Comparision</span> </button>
+    </div>
+</div>
+
+
+
+</body>
+</html>
