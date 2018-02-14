@@ -4,6 +4,7 @@ app.controller("MinCtrl",function ($scope,$http) {
 
     $scope.myfunction = function (btn) {
 
+        //Kansas City api https://data.kcmo.org/resource/cyqf-nban.json?$select=creation_year,count(case_id)&$group=creation_year
         $http.get("https://data.kcmo.org/resource/cyqf-nban.json?$select=creation_year,count(case_id)&$group=creation_year").then(function (value) {
 
             $scope.kcvalue = value.data;
@@ -19,71 +20,13 @@ app.controller("MinCtrl",function ($scope,$http) {
             drawCharty($scope.mydata2010/$scope.population[0].Kansas_City, $scope.mydata2011/$scope.population[1].Kansas_City, $scope.mydata2012/$scope.population[2].Kansas_City, $scope.mydata2013/$scope.population[3].Kansas_City, $scope.mydata2014/$scope.population[4].Kansas_City, $scope.mydata2015/$scope.population[5].Kansas_City, $scope.mydata2016/$scope.population[6].Kansas_City, 'kc_chart2');
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //New york city api
 
         google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(drawChartx);
         function drawChartx(var0, var1 , var2, var3, var4, var5, var6,var7) {
             var data = google.visualization.arrayToDataTable([
-                ['Year', 'Kansas City'],
+                ['Year', 'Kansas City Requests'],
                 ['2010', var0],
                 ['2011', var1],
                 ['2012', var2],
@@ -95,15 +38,14 @@ app.controller("MinCtrl",function ($scope,$http) {
             var options = {
                 title: '311 call service requests ',
                 curveType: 'function',
-                legend: {position: 'bottom'}
+                legend: {position: 'right'}
             };
             var chart = new google.visualization.LineChart(document.getElementById(var7));
             chart.draw(data, options);
         }
-
         function drawCharty(var0, var1 , var2, var3, var4, var5, var6,var7) {
             var data = google.visualization.arrayToDataTable([
-                ['Year', 'Kansas City'],
+                ['Year', 'Kansas City Normization'],
                 ['2010', var0],
                 ['2011', var1],
                 ['2012', var2],
@@ -115,7 +57,7 @@ app.controller("MinCtrl",function ($scope,$http) {
             var options = {
                 title: '311 call service requests Normilization ',
                 curveType: 'function',
-                legend: {position: 'bottom'}
+                legend: {position: 'right'}
             };
             var chart = new google.visualization.LineChart(document.getElementById(var7));
             chart.draw(data, options);
