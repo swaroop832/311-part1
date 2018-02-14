@@ -43,72 +43,199 @@
         <div class="col-sm-3 sidenav">
             <h4 class="text-success">City Comparison</h4>
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a data-toggle="pill" href="#section1">Home</a></li>
+                <li class="active"><a data-toggle="pill" href="#home">Home</a></li>
                 <li><a data-toggle="pill" href="#Kansas_City">Kansas City</a></li>
-                <li><a data-toggle="pill" href="#section3">New York</a></li>
-                <li><a data-toggle="pill" href="#section4">Family</a></li>
+                <li><a data-toggle="pill" href="#new_York_City">New York City, NY</a></li>
+                <li><a data-toggle="pill" href="#austin">Austin, TX</a></li>
+                <li><a data-toggle="pill" href="#baltimore">Baltimore, MD</a></li>
+                <li><a data-toggle="pill" href="#baton_Rouge">Baton Rouge, LA</a></li>
+                <li><a data-toggle="pill" href="#boston">Boston, MA</a></li>
+                <li><a data-toggle="pill" href="#chattanooga">Chattanooga, TN</a></li>
+                <li><a data-toggle="pill" href="#chicago">Chicago, IL</a></li>
+                <li><a data-toggle="pill" href="#gainesville">Gainesville, FL</a></li>
+                <li><a data-toggle="pill" href="#houston">Houston, TX</a></li>
+                <li><a data-toggle="pill" href="#johns_Creek">Johns Creek, GA</a></li>
+                <li><a data-toggle="pill" href="#las_Vegas">Las Vegas, NV</a></li>
+                <li><a data-toggle="pill" href="#los_Angeles">Los Angeles, CA</a></li>
+                <li><a data-toggle="pill" href="#louisville">Louisville, KY</a></li>
+                <li><a data-toggle="pill" href="#minneapolis">Minneapolis, MN</a></li>
+                <li><a data-toggle="pill" href="#new_Orleans">New Orleans, LA</a></li>
+                <li><a data-toggle="pill" href="#philadelphia">Philadelphia, PA</a></li>
+                <li><a data-toggle="pill" href="#pittsburgh">Pittsburgh, PA</a></li>
+                <li><a data-toggle="pill" href="#sacramento">Sacramento, CA</a></li>
+                <li><a data-toggle="pill" href="#san_Diego">San Diego, CA</a></li>
+                <li><a data-toggle="pill" href="#san_Francisco">San Francisco, CA</a></li>
+                <li><a data-toggle="pill" href="#washington">Washington, DC</a></li>
+
             </ul><br>
         </div>
         <div class="col-sm-9">
+            <div class="tab content">
 
-            <div id="section1" class="tab-pane fade in active">
-                <h4><small>Home</small></h4>
-                <hr>
-            </div>
+                <div id="home" class="tab-pane fade in active">
+                    <h4>
+                        <small>RECENT POSTS</small>
+                    </h4>
+                    <hr>
+                    <h2>I Love Food</h2>
+                    <p>Food is my passion. Lorem ipsum dolor sit amet, consectetu</p>
+                </div>
 
-            <div id="Kansas_City" class="tab-pane fade">
-                <h2>Kansas City</h2>
-                <div class="col-md-4">
-                    <table class="table table-primary table-bodered text-primary text-center">
-                        <thead>
-                        <tr class="text-center">
-                            <th style="text-align: center">year</th>
-                            <th style="text-align: center"> No. of requests</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="x in kcvalue">
-                            <td>{{x.creation_year}}</td>
-                            <td>{{x.count_case_id}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-4">
-                    <table class="table table-primary table-bodered text-primary text-center">
-                        <thead>
-                        <tr class="text-center">
-                            <th style="text-align: center">year</th>
-                            <th style="text-align: center"> Population</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="x in population">
-                            <td>{{x.Year}}</td>
-                            <td>{{x.Kansas_City}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <br>
-                <div class="container-fluid text-center">
-                    <div class="row">
-                        <div  id="kc_chart1" style="width: 900px; height: 500px; float: left"></div>
-                        <div  id="kc_chart2" style="width: 900px; height: 500px; float: left"></div>
+                <!--Kansas city-->
+
+                <div id="Kansas_City" class="tab-pane fade">
+                    <h2>Kansas City</h2>
+                    <div class="col-md-4">
+                        <table class="table table-primary table-bodered text-primary text-center">
+                            <thead>
+                            <tr class="text-center">
+                                <th style="text-align: center">year</th>
+                                <th style="text-align: center"> No. of requests</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="x in kcvalue">
+                                <td>{{x.creation_year}}</td>
+                                <td>{{x.count_case_id}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4">
+                        <table class="table table-primary table-bodered text-primary text-center">
+                            <thead>
+                            <tr class="text-center">
+                                <th style="text-align: center">year</th>
+                                <th style="text-align: center"> Population</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="x in population">
+                                <td>{{x.Year}}</td>
+                                <td>{{x.Kansas_City}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <div class="container-fluid text-center">
+                        <div class="row">
+                            <div id="kc_chart1" style="width: 900px; height: 500px; float: left"></div>
+                            <div id="kc_chart2" style="width: 900px; height: 500px; float: left"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="section3" class="tab-pane fade">
-
-            </div>
-
-            <div id="section4" class="tab-pane fade">
+                <!--New York City, NY-->
+                <div id="new_York_City" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
                 </div>
 
+
+                <!--Austin, TX-->
+                <div id="austin" class="tab-pane fade ">
+                    <h4>Leave a Comment:</h4>
+
+                </div>
+
+                <!--Baltimore, MD-->
+                <div id="baltimore" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Baton Rouge, LA-->
+                <div id="baton_Rouge" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Boston Rouge, LA-->
+                <div id="boston" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Chattanooga, TN-->
+                <div id="chattanooga" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Chicago, IL-->
+                <div id="chicago" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Gainesville, FL-->
+                <div id="gainesville" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Houston, TX-->
+                <div id="houston" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Johns Creek, GA-->
+                <div id="johns_Creek" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Las Vegas, NV-->
+                <div id="las_Vegas" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Los Angeles, CA-->
+                <div id="los_Angeles" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Louisville, KY-->
+                <div id="louisville" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Minneapolis, MN-->
+                <div id="minneapolis" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--New Orleans, LA-->
+                <div id="new_Orleans" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Philadelphia, PA-->
+                <div id="philadelphia" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Pittsburgh, PA-->
+                <div id="pittsburgh" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Sacramento, CA-->
+                <div id="sacramento" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--San Diego, CA-->
+                <div id="san_Diego" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--San Francisco, CA-->
+                <div id="san_Francisco" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
+
+                <!--Washington, DC-->
+                <div id="washington" class="tab-pane fade ">
+                    <p><span class="badge">2</span> Comments:</p><br>
+                </div>
             </div>
         </div>
     </div>
+</div>
 <footer class="container-fluid">
     <p>Footer Text</p>
 </footer>
