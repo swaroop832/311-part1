@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <SCRIPT SRC="app.js"></SCRIPT>
+    <style>
+        /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+        .row.content {height: 2000px}
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+            .row.content {height: auto;}
+        }
+    </style>
+</head>
+<body data-ng-app ="app" ng-controller="MinCtrl">
+<div class="container-fluid" ng-init="myfunction(btn)">
+    <div class="row content">
+        <div class="col-sm-3 sidenav">
+            <h4 class="text-success">City Comparison</h4>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a data-toggle="pill" href="#section1">Home</a></li>
+                <li><a data-toggle="pill" href="#Kansas_City">Kansas City</a></li>
+                <li><a data-toggle="pill" href="#section3">New York</a></li>
+                <li><a data-toggle="pill" href="#section4">Family</a></li>
+            </ul><br>
+        </div>
+        <div class="col-sm-9">
+
+            <div id="section1" class="tab-pane fade in active">
+                <h4><small>Home</small></h4>
+                <hr>
+            </div>
+
+            <div id="Kansas_City" class="tab-pane fade">
+                <h2>Kansas City</h2>
+                <div class="col-md-4">
+                    <table class="table table-primary table-bodered text-primary text-center">
+                        <thead>
+                        <tr class="text-center">
+                            <th style="text-align: center">year</th>
+                            <th style="text-align: center"> No. of requests</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="x in kcvalue">
+                            <td>{{x.creation_year}}</td>
+                            <td>{{x.count_case_id}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <table class="table table-primary table-bodered text-primary text-center">
+                        <thead>
+                        <tr class="text-center">
+                            <th style="text-align: center">year</th>
+                            <th style="text-align: center"> Population</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="x in population">
+                            <td>{{x.Year}}</td>
+                            <td>{{x.Kansas_City}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div class="container-fluid text-center">
+                    <div class="row">
+                        <div  id="kc_chart1" style="width: 900px; height: 500px; float: left"></div>
+                        <div  id="kc_chart2" style="width: 900px; height: 500px; float: left"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="section3" class="tab-pane fade">
+
+            </div>
+
+            <div id="section4" class="tab-pane fade">
+                </div>
+
+            </div>
+        </div>
+    </div>
+<footer class="container-fluid">
+    <p>Footer Text</p>
+</footer>
+
+</body>
+</html>
