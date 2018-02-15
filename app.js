@@ -58,7 +58,7 @@ app.controller("MinCtrl",function ($scope,$http) {
 
         })
     };
-
+//Gainesville api
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChartx);
         function drawChartx(var0, var1 , var2, var3, var4, var5, var6,var7) {
