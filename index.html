@@ -16,15 +16,6 @@
 
         .row.content {height: 1800px}
 
-
-
-
-
-
-
-
-
-
         /* Set gray background color and 100% height */
         .sidenav {
             background-color: #f1f1f1;
@@ -63,7 +54,7 @@
                 <li><a data-toggle="pill" href="#boston" data-ng-click="bsfunction()">Boston, MA</a></li>
                 <li><a data-toggle="pill" href="#chattanooga" data-ng-click="ctfunction()">Chattanooga, TN</a></li>
                 <li><a data-toggle="pill" href="#chicago">Chicago, IL</a></li>
-                <li><a data-toggle="pill" href="#gainesville">Gainesville, FL</a></li>
+                <li><a data-toggle="pill" href="#gainesville" data-ng-click="gainesville()">Gainesville, FL</a></li>
                 <li><a data-toggle="pill" href="#houston">Houston, TX</a></li>
                 <li><a data-toggle="pill" href="#johns_Creek">Johns Creek, GA</a></li>
                 <li><a data-toggle="pill" href="#las_Vegas">Las Vegas, NV</a></li>
@@ -416,7 +407,48 @@
 
                 <!--Gainesville, FL-->
                 <div id="gainesville" class="tab-pane fade ">
-                    <p><span class="badge">2</span> Comments:</p><br>
+                    <div class="row">
+                        <h2 class="page-header text-center text-primary">Gainesville</h2>
+                        <div class="text-center">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> No. of requests</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in gainvalue ">
+                                        <td>{{x.year}}</td>
+                                        <td>{{x.count_id}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> Population</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in population">
+                                        <td>{{x.Year}}</td>
+                                        <td>{{x.Gainesville}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="gain_chart1" style="margin-left: 110px"></div>
+                        <div id="gain_chart2" style="margin-left: 110px"></div>
+                    </div>
                 </div>
 
                 <!--Houston, TX-->
