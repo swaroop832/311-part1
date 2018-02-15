@@ -58,6 +58,8 @@ app.controller("MinCtrl",function ($scope,$http) {
         })
     };
 
+//Gainesville api
+
     //Baton Rouge, LA Api
 
     $scope.bafunction = function () {
