@@ -49,7 +49,6 @@ app.controller("MinCtrl",function ($scope,$http) {
         $http.get("https://data.austintexas.gov/resource/5h38-fd8d.json?$select=date_extract_y(sr_status_date)%20as%20year,count(sr_number)&$group=year&$order=year").then(function (value) {
 
             $scope.auvalue = value.data;
-            console.log($scope.auvalue);
             $scope.au2014 = $scope.auvalue[1].count_sr_number;
             $scope.au2015 = $scope.auvalue[2].count_sr_number;
             $scope.au2016 = $scope.auvalue[3].count_sr_number;
@@ -58,6 +57,71 @@ app.controller("MinCtrl",function ($scope,$http) {
 
         })
     };
+
+    //Baton Rouge, LA Api
+
+    $scope.bafunction = function () {
+
+        $http.get("https://data.brla.gov/resource/uqxt-dtpe.json?$select=date_extract_y(createdate)%20as%20year,count(id)&$group=year&$order=year").then(function (value) {
+
+            $scope.bavalue = value.data;
+            $scope.ba2016 = $scope.bavalue[1].count_id;
+            drawChartx(0,0,0,0,0,0,$scope.ba2016,'ba_chart1');
+            drawCharty(0,0,0,0,0,0,$scope.ba2016/$scope.population[6].Baton_Rouge,'ba_chart2');
+        })
+    };
+
+    //Boston MA Api
+
+    $scope.bsfunction = function () {
+
+        $http.get("https://data.boston.gov/api/3/action/datastore_search?resource_id=2968e2c0-d479-49ba-a884-4ef523ada3c0&q=2010").then(function (value) {
+            $scope.bsvalue2010 = value.data.result.total;
+        });
+        $http.get("https://data.boston.gov/api/3/action/datastore_search?resource_id=2968e2c0-d479-49ba-a884-4ef523ada3c0&q=2011").then(function (value) {
+            $scope.bsvalue2011 = value.data.result.total;
+        });
+        $http.get("https://data.boston.gov/api/3/action/datastore_search?resource_id=2968e2c0-d479-49ba-a884-4ef523ada3c0&q=2012").then(function (value) {
+            $scope.bsvalue2012 = value.data.result.total;
+        });
+        $http.get("https://data.boston.gov/api/3/action/datastore_search?resource_id=2968e2c0-d479-49ba-a884-4ef523ada3c0&q=2013").then(function (value) {
+            $scope.bsvalue2013 = value.data.result.total;
+        });
+        $http.get("https://data.boston.gov/api/3/action/datastore_search?resource_id=2968e2c0-d479-49ba-a884-4ef523ada3c0&q=2014").then(function (value) {
+            $scope.bsvalue2014 = value.data.result.total;
+        });
+        $http.get("https://data.boston.gov/api/3/action/datastore_search?resource_id=2968e2c0-d479-49ba-a884-4ef523ada3c0&q=2015").then(function (value) {
+            $scope.bsvalue2015 = value.data.result.total;
+        });
+        $http.get("https://data.boston.gov/api/3/action/datastore_search?resource_id=2968e2c0-d479-49ba-a884-4ef523ada3c0&q=2016").then(function (value) {
+            $scope.bsvalue2016 = value.data.result.total;
+            drawChartx($scope.bsvalue2010,$scope.bsvalue2011,$scope.bsvalue2012,$scope.bsvalue2013,$scope.bsvalue2014,$scope.bsvalue2015,$scope.bsvalue2016,'bs_chart1');
+            drawCharty($scope.bsvalue2010/$scope.population[0].Boston,$scope.bsvalue2011/$scope.population[1].Boston,$scope.bsvalue2012/$scope.population[2].Boston,$scope.bsvalue2013/$scope.population[3].Boston,$scope.bsvalue2014/$scope.population[4].Boston,$scope.bsvalue2015/$scope.population[5].Boston,$scope.bsvalue2016/$scope.population[6].Boston,'bs_chart2');
+        });
+
+
+    };
+
+    //Chattanooga, TN Api
+
+    $scope.ctfunction = function () {
+
+        $http.get("https://data.chattlibrary.org/resource/sf89-4qcw.json?$select=date_extract_y(created_date)%20as%20year,count(description)&$group=year&$order=year").then(function (value) {
+            $scope.ctvalue = value.data;
+            $scope.ct2010 = $scope.ctvalue[7].count_description;
+            $scope.ct2011 = $scope.ctvalue[8].count_description;
+            $scope.ct2012 = $scope.ctvalue[9].count_description;
+            $scope.ct2013 = $scope.ctvalue[10].count_description;
+            $scope.ct2014 = $scope.ctvalue[11].count_description;
+            $scope.ct2015 = $scope.ctvalue[12].count_description;
+            $scope.ct2016 = $scope.ctvalue[13].count_description;
+            console.log($scope.ct2016);
+            drawChartx($scope.ct2010,$scope.ct2011,$scope.ct2012,$scope.ct2013,$scope.ct2014,$scope.ct2015,$scope.ct2016,'ct_chart1');
+            drawCharty($scope.ct2010/$scope.population[0].Chattanooga,$scope.ct2011/$scope.population[1].Chattanooga,$scope.ct2012/$scope.population[2].Chattanooga,$scope.ct2013/$scope.population[3].Chattanooga,$scope.ct2014/$scope.population[4].Chattanooga,$scope.ct2015/$scope.population[5].Chattanooga,$scope.ct2016/$scope.population[6].Chattanooga,'ct_chart2')
+        })
+    };
+
+
 
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChartx);
@@ -109,43 +173,64 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Year" : 2010,
             "Kansas_City" : 460802,
             "NewYork_City": 8192000,
-            "Austin": 815587
+            "Austin": 815587,
+            "Baton_Rouge": 229598,
+            "Boston" :620701,
+            "Chattanooga": 170646
         },
         {
             "Year" : 2011,
             "Kansas_City" : 462108 ,
             "NewYork_City": 8284000,
-            "Austin": 838599
+            "Austin": 838599,
+            "Baton_Rouge": 228903,
+            "Boston" :630195,
+            "Chattanooga": 172068
         },
         {
             "Year" : 2012,
             "Kansas_City" : 464534,
             "NewYork_City": 8361000,
-            "Austin": 864483
+            "Austin": 864483,
+            "Baton_Rouge": 229439,
+            "Boston" :641911,
+            "Chattanooga": 173869
         },
         {
             "Year" : 2013,
             "Kansas_City" : 467118 ,
             "NewYork_City": 8422000,
-            "Austin": 885343
+            "Austin": 885343,
+            "Baton_Rouge": 229117,
+            "Boston" :651090,
+            "Chattanooga": 174961
         },
         {
             "Year" : 2014,
             "Kansas_City" : 470651,
             "NewYork_City": 8472000,
-            "Austin": 911390
+            "Austin": 911390,
+            "Baton_Rouge": 228911,
+            "Boston" :659180,
+            "Chattanooga": 174749
         },
         {
             "Year" : 2015,
             "Kansas_City" : 474862,
             "NewYork_City": 8517000,
-            "Austin": 930152
+            "Austin": 930152,
+            "Baton_Rouge": 228320,
+            "Boston" :665984,
+            "Chattanooga": 176220
         },
         {
             "Year" : 2016,
             "Kansas_City" : 481420,
             "NewYork_City": 8538000,
-            "Austin": 947890
+            "Austin": 947890,
+            "Baton_Rouge": 227715,
+            "Boston" :673184,
+            "Chattanooga": 177571
         }
 
     ];
