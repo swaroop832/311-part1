@@ -120,7 +120,7 @@ app.controller("MinCtrl",function ($scope,$http) {
         })
     };
 
-<<<<<<< HEAD
+
 //Gainesville api
 
 
@@ -138,9 +138,27 @@ app.controller("MinCtrl",function ($scope,$http) {
         })
     };
 
+// Los Angeles, CA
 
-=======
->>>>>>> origin/master
+     $scope.losangeles = function () {
+
+         $http.get("https://data.lacity.org/resource/ms7h-a45h.json?$select=date_trunc_y(createddate)%20as%20year,count(srnumber)&$group=year&$order=year").then(function (value) {
+
+            $scope.lagraphvalue2015 = value.data[0].count_srnumber;
+
+
+        });
+        $http.get("https://data.lacity.org/resource/ndkd-k878.json?$select=date_trunc_y(createddate)%20as%20year,count(srnumber)&$group=year&$order=year").then(function (value) {
+
+             $scope.lagraphvalue2016 = value.data[0].count_srnumber;
+        });
+            drawChartx(0,0,0,0,0,$scope.lagraphvalue2015,$scope.lagraphvalue2016,'la_chart1');
+            drawCharty(0,0,0,0,0,$scope.lagraphvalue2015/$scope.population[5].LosAngeles,$scope.lagraphvalue2016/$scope.population[6].LosAngeles,'la_chart2');
+
+
+    };
+
+
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChartx);
         function drawChartx(var0, var1 , var2, var3, var4, var5, var6,var7) {
@@ -195,7 +213,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 229598,
             "Boston" :620701,
             "Chattanooga": 170646,
-            "Gainesville": 124700
+            "Gainesville": 124700,
+            "LosAngeles": 3796292
         },
         {
             "Year" : 2011,
@@ -205,7 +224,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 228903,
             "Boston" :630195,
             "Chattanooga": 172068,
-            "Gainesville": 125746
+            "Gainesville": 125746,
+            "LosAngeles": 3825393
         },
         {
             "Year" : 2012,
@@ -215,7 +235,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 229439,
             "Boston" :641911,
             "Chattanooga": 173869,
-            "Gainesville": 126277
+            "Gainesville": 126277,
+            "LosAngeles": 3858137
         },
         {
             "Year" : 2013,
@@ -225,7 +246,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 229117,
             "Boston" :651090,
             "Chattanooga": 174961,
-            "Gainesville": 126787
+            "Gainesville": 126787,
+            "LosAngeles": 3890436
         },
         {
             "Year" : 2014,
@@ -235,7 +257,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 228911,
             "Boston" :659180,
             "Chattanooga": 174749,
-            "Gainesville": 128212
+            "Gainesville": 128212,
+            "LosAngeles": 3920173
         },
         {
             "Year" : 2015,
@@ -245,7 +268,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 228320,
             "Boston" :665984,
             "Chattanooga": 176220,
-            "Gainesville": 130127
+            "Gainesville": 130127,
+            "LosAngeles": 3949149
         },
         {
             "Year" : 2016,
@@ -255,7 +279,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 227715,
             "Boston" :673184,
             "Chattanooga": 177571,
-            "Gainesville": 131591
+            "Gainesville": 131591,
+            "LosAngeles": 3976322
         }
     ];
 });
