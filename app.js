@@ -115,13 +115,10 @@ app.controller("MinCtrl",function ($scope,$http) {
             $scope.ct2014 = $scope.ctvalue[11].count_description;
             $scope.ct2015 = $scope.ctvalue[12].count_description;
             $scope.ct2016 = $scope.ctvalue[13].count_description;
-            console.log($scope.ct2016);
             drawChartx($scope.ct2010,$scope.ct2011,$scope.ct2012,$scope.ct2013,$scope.ct2014,$scope.ct2015,$scope.ct2016,'ct_chart1');
             drawCharty($scope.ct2010/$scope.population[0].Chattanooga,$scope.ct2011/$scope.population[1].Chattanooga,$scope.ct2012/$scope.population[2].Chattanooga,$scope.ct2013/$scope.population[3].Chattanooga,$scope.ct2014/$scope.population[4].Chattanooga,$scope.ct2015/$scope.population[5].Chattanooga,$scope.ct2016/$scope.population[6].Chattanooga,'ct_chart2')
         })
     };
-
-
 
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChartx);
@@ -232,6 +229,5 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Boston" :673184,
             "Chattanooga": 177571
         }
-
     ];
 });
