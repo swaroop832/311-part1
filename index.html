@@ -69,7 +69,7 @@
                 <li><a data-toggle="pill" href="#washington">Washington, DC</a></li>
                 <li><a data-toggle="pill" href="#ann_Arbor">Ann Arbor, MI</a></li>
                 <li><a data-toggle="pill" href="#asheville">Asheville, NC</a></li>
-                <li><a data-toggle="pill" href="#cincinnati">Cincinnati, OH</a></li>
+                <li><a data-toggle="pill" href="#cincinnati" data-ng-click= "cincifunction()">Cincinnati, OH</a></li>
                 <li><a data-toggle="pill" href="#jersey_City">Jersey City, NJ</a></li>
                 <li><a data-toggle="pill" href="#salt_Lake_City">Salt Lake City, UT</a></li>
                 <li><a data-toggle="pill" href="#santa_Monica">Santa Monica, CA</a></li>
@@ -573,7 +573,48 @@
 
                 <!--Cincinnati, OH-->
                 <div id="cincinnati" class="tab-pane fade ">
-                    <p><span class="badge">2</span> Comments:</p><br>
+                    <div class="row">
+                        <h2 class="page-header text-center text-primary">Cincinnati City</h2>
+                        <div class="text-center">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> No. of requests</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in cinvalue | limitTo : 5">
+                                        <td>{{x.year | date :"y"}}</td>
+                                        <td>{{x.count_service_request_id}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> Population</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in population">
+                                        <td>{{x.Year}}</td>
+                                        <td>{{x.Cincinnati}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="cin_chart1" style="margin-left: 110px"></div>
+                        <div id="cin_chart2" style="margin-left: 110px"></div>
+                    </div>
                 </div>
 
                 <!--Jersey City, NJ-->
