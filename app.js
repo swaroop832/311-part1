@@ -287,6 +287,25 @@ app.controller("MinCtrl",function ($scope,$http) {
 
     };
 
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
+    //Cincinnati, OH Api
+
+    $scope.cincifunction = function () {
+
+        $http.get("https://data.cincinnati-oh.gov/resource/5zzw-knr5.json?$select=date_trunc_y(requested_date)%20as%20year,count(service_request_id)&$group=year&$order=year").then(function (value) {
+            $scope.cinvalue = value.data;
+            $scope.cin2012 = $scope.cinvalue[0].count_service_request_id;
+            $scope.cin2013 = $scope.cinvalue[1].count_service_request_id;
+            $scope.cin2014 = $scope.cinvalue[2].count_service_request_id;
+            $scope.cin2015 = $scope.cinvalue[3].count_service_request_id;
+            $scope.cin2016 = $scope.cinvalue[4].count_service_request_id;
+            drawChartx(0,0,$scope.cin2012,$scope.cin2013,$scope.cin2014,$scope.cin2015,$scope.cin2016,'cin_chart1');
+            drawCharty(0,0,$scope.cin2012/$scope.population[2].Cincinnati,$scope.cin2013/$scope.population[3].Cincinnati,$scope.cin2014/$scope.population[4].Cincinnati,$scope.cin2015/$scope.population[5].Cincinnati,$scope.cin2016/$scope.population[6].Cincinnati,'cin_chart2')
+        })
+    };
+
 >>>>>>> origin/master
 
     google.charts.load('current', {'packages': ['corechart']});
@@ -345,6 +364,7 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Chattanooga": 170646,
             "Gainesville": 124700,
 <<<<<<< HEAD
+<<<<<<< HEAD
             "JohnsCreek" : 77190,
             "Minneapolis" : 383134,
              "New_Orleans": 347903,
@@ -354,6 +374,10 @@ app.controller("MinCtrl",function ($scope,$http) {
 
 =======
             "LosAngeles": 3796292
+>>>>>>> origin/master
+=======
+            "LosAngeles": 3796292,
+            "Cincinnati": 296913
 >>>>>>> origin/master
         },
         {
@@ -366,6 +390,7 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Chattanooga": 172068,
             "Gainesville": 125746,
 <<<<<<< HEAD
+<<<<<<< HEAD
             "JohnsCreek" : 79434,
             "Minneapolis" : 388073,
             "New_Orleans": 360840,
@@ -374,6 +399,10 @@ app.controller("MinCtrl",function ($scope,$http) {
             "San_Francisco" : 815672
 =======
             "LosAngeles": 3825393
+>>>>>>> origin/master
+=======
+            "LosAngeles": 3825393,
+            "Cincinnati": 296101
 >>>>>>> origin/master
         },
         {
@@ -386,6 +415,7 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Chattanooga": 173869,
             "Gainesville": 126277,
 <<<<<<< HEAD
+<<<<<<< HEAD
             "JohnsCreek" : 82066,
             "Minneapolis" : 392821,
             "New_Orleans": 370138,
@@ -394,6 +424,10 @@ app.controller("MinCtrl",function ($scope,$http) {
             "San_Francisco" : 828816
 =======
             "LosAngeles": 3858137
+>>>>>>> origin/master
+=======
+            "LosAngeles": 3858137,
+            "Cincinnati": 296794
 >>>>>>> origin/master
         },
         {
@@ -406,6 +440,7 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Chattanooga": 174961,
             "Gainesville": 126787,
 <<<<<<< HEAD
+<<<<<<< HEAD
             "JohnsCreek" : 82596,
             "Minneapolis" : 400137,
             "New_Orleans": 378886,
@@ -414,6 +449,10 @@ app.controller("MinCtrl",function ($scope,$http) {
             "San_Francisco" : 839280
 =======
             "LosAngeles": 3890436
+>>>>>>> origin/master
+=======
+            "LosAngeles": 3890436,
+            "Cincinnati": 297444
 >>>>>>> origin/master
         },
         {
@@ -426,6 +465,7 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Chattanooga": 174749,
             "Gainesville": 128212,
 <<<<<<< HEAD
+<<<<<<< HEAD
             "JohnsCreek" : 82944,
             "Minneapolis" : 406619,
             "New_Orleans": 384355,
@@ -434,6 +474,10 @@ app.controller("MinCtrl",function ($scope,$http) {
             "San_Francisco" : 850424
 =======
             "LosAngeles": 3920173
+>>>>>>> origin/master
+=======
+            "LosAngeles": 3920173,
+            "Cincinnati": 298100
 >>>>>>> origin/master
         },
         {
@@ -446,6 +490,7 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Chattanooga": 176220,
             "Gainesville": 130127,
 <<<<<<< HEAD
+<<<<<<< HEAD
             "JohnsCreek" : 83107,
             "Minneapolis" : 410116,
             "New_Orleans": 389738,
@@ -454,6 +499,10 @@ app.controller("MinCtrl",function ($scope,$http) {
             "San_Francisco" : 862004
 =======
             "LosAngeles": 3949149
+>>>>>>> origin/master
+=======
+            "LosAngeles": 3949149,
+            "Cincinnati": 298654
 >>>>>>> origin/master
         },
         {
@@ -466,6 +515,7 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Chattanooga": 177571,
             "Gainesville": 131591,
 <<<<<<< HEAD
+<<<<<<< HEAD
             "JohnsCreek" : 83873,
             "Minneapolis" : 413651,
             "New_Orleans": 391495,
@@ -474,6 +524,10 @@ app.controller("MinCtrl",function ($scope,$http) {
             "San_Francisco" : 870887
 =======
             "LosAngeles": 3976322
+>>>>>>> origin/master
+=======
+            "LosAngeles": 3976322,
+            "Cincinnati": 298800
 >>>>>>> origin/master
         }
     ];
