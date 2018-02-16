@@ -119,11 +119,6 @@ app.controller("MinCtrl",function ($scope,$http) {
             drawCharty($scope.ct2010/$scope.population[0].Chattanooga,$scope.ct2011/$scope.population[1].Chattanooga,$scope.ct2012/$scope.population[2].Chattanooga,$scope.ct2013/$scope.population[3].Chattanooga,$scope.ct2014/$scope.population[4].Chattanooga,$scope.ct2015/$scope.population[5].Chattanooga,$scope.ct2016/$scope.population[6].Chattanooga,'ct_chart2')
         })
     };
-
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 //Gainesville api
 
 
@@ -140,8 +135,6 @@ app.controller("MinCtrl",function ($scope,$http) {
 
         })
     };
-
-<<<<<<< HEAD
 // Johns Creek, GA
 
     $scope.jcfunction = function () {
@@ -266,7 +259,6 @@ app.controller("MinCtrl",function ($scope,$http) {
     };
 
 
-=======
 // Los Angeles, CA
 
      $scope.losangeles = function () {
@@ -275,21 +267,13 @@ app.controller("MinCtrl",function ($scope,$http) {
 
             $scope.lagraphvalue2015 = value.data[0].count_srnumber;
 
-
-        });
         $http.get("https://data.lacity.org/resource/ndkd-k878.json?$select=date_trunc_y(createddate)%20as%20year,count(srnumber)&$group=year&$order=year").then(function (value) {
 
              $scope.lagraphvalue2016 = value.data[0].count_srnumber;
-        });
             drawChartx(0,0,0,0,0,$scope.lagraphvalue2015,$scope.lagraphvalue2016,'la_chart1');
             drawCharty(0,0,0,0,0,$scope.lagraphvalue2015/$scope.population[5].LosAngeles,$scope.lagraphvalue2016/$scope.population[6].LosAngeles,'la_chart2');
-
-
+        }); });
     };
-
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
     //Cincinnati, OH Api
 
     $scope.cincifunction = function () {
@@ -306,7 +290,6 @@ app.controller("MinCtrl",function ($scope,$http) {
         })
     };
 
->>>>>>> origin/master
 
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChartx);
@@ -362,23 +345,15 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 229598,
             "Boston" :620701,
             "Chattanooga": 170646,
-            "Gainesville": 124700,
-<<<<<<< HEAD
-<<<<<<< HEAD
             "JohnsCreek" : 77190,
             "Minneapolis" : 383134,
              "New_Orleans": 347903,
              "Philadelphia" : 1528427,
             "Sacramento" : 467597,
-            "San_Francisco" : 805766
-
-=======
-            "LosAngeles": 3796292
->>>>>>> origin/master
-=======
+            "San_Francisco" : 805766,
             "LosAngeles": 3796292,
             "Cincinnati": 296913
->>>>>>> origin/master
+
         },
         {
             "Year" : 2011,
@@ -389,21 +364,14 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Boston" :630195,
             "Chattanooga": 172068,
             "Gainesville": 125746,
-<<<<<<< HEAD
-<<<<<<< HEAD
             "JohnsCreek" : 79434,
             "Minneapolis" : 388073,
             "New_Orleans": 360840,
             "Philadelphia" : 1539022,
             "Sacramento" : 471425,
-            "San_Francisco" : 815672
-=======
-            "LosAngeles": 3825393
->>>>>>> origin/master
-=======
+            "San_Francisco" : 815672,
             "LosAngeles": 3825393,
             "Cincinnati": 296101
->>>>>>> origin/master
         },
         {
             "Year" : 2012,
@@ -414,21 +382,14 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Boston" :641911,
             "Chattanooga": 173869,
             "Gainesville": 126277,
-<<<<<<< HEAD
-<<<<<<< HEAD
             "JohnsCreek" : 82066,
             "Minneapolis" : 392821,
             "New_Orleans": 370138,
             "Philadelphia" : 1550379,
             "Sacramento" : 475113,
-            "San_Francisco" : 828816
-=======
-            "LosAngeles": 3858137
->>>>>>> origin/master
-=======
+            "San_Francisco" : 828816,
             "LosAngeles": 3858137,
             "Cincinnati": 296794
->>>>>>> origin/master
         },
         {
             "Year" : 2013,
@@ -439,21 +400,14 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Boston" :651090,
             "Chattanooga": 174961,
             "Gainesville": 126787,
-<<<<<<< HEAD
-<<<<<<< HEAD
             "JohnsCreek" : 82596,
             "Minneapolis" : 400137,
             "New_Orleans": 378886,
             "Philadelphia" : 1555868,
             "Sacramento" : 479201,
-            "San_Francisco" : 839280
-=======
-            "LosAngeles": 3890436
->>>>>>> origin/master
-=======
+            "San_Francisco" : 839280,
             "LosAngeles": 3890436,
             "Cincinnati": 297444
->>>>>>> origin/master
         },
         {
             "Year" : 2014,
@@ -464,21 +418,14 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Boston" :659180,
             "Chattanooga": 174749,
             "Gainesville": 128212,
-<<<<<<< HEAD
-<<<<<<< HEAD
             "JohnsCreek" : 82944,
             "Minneapolis" : 406619,
             "New_Orleans": 384355,
             "Philadelphia" : 1560609,
             "Sacramento" : 483920,
-            "San_Francisco" : 850424
-=======
-            "LosAngeles": 3920173
->>>>>>> origin/master
-=======
+            "San_Francisco" : 850424,
             "LosAngeles": 3920173,
             "Cincinnati": 298100
->>>>>>> origin/master
         },
         {
             "Year" : 2015,
@@ -489,21 +436,14 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Boston" :665984,
             "Chattanooga": 176220,
             "Gainesville": 130127,
-<<<<<<< HEAD
-<<<<<<< HEAD
             "JohnsCreek" : 83107,
             "Minneapolis" : 410116,
             "New_Orleans": 389738,
             "Philadelphia" : 1564964,
             "Sacramento" : 489202,
-            "San_Francisco" : 862004
-=======
-            "LosAngeles": 3949149
->>>>>>> origin/master
-=======
+            "San_Francisco" : 862004,
             "LosAngeles": 3949149,
             "Cincinnati": 298654
->>>>>>> origin/master
         },
         {
             "Year" : 2016,
@@ -514,21 +454,14 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Boston" :673184,
             "Chattanooga": 177571,
             "Gainesville": 131591,
-<<<<<<< HEAD
-<<<<<<< HEAD
             "JohnsCreek" : 83873,
             "Minneapolis" : 413651,
             "New_Orleans": 391495,
             "Philadelphia" : 1567872,
             "Sacramento" : 495234,
-            "San_Francisco" : 870887
-=======
-            "LosAngeles": 3976322
->>>>>>> origin/master
-=======
+            "San_Francisco" : 870887,
             "LosAngeles": 3976322,
             "Cincinnati": 298800
->>>>>>> origin/master
         }
     ];
 });
