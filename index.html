@@ -12,16 +12,13 @@
     <SCRIPT SRC="app.js"></SCRIPT>
     <style>
         /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-        .row.content {height: 1800px}
-
-<<<<<<< HEAD
         /* Set gray background color and 100% height */
-=======
        /* Set gray background color and 100% height */
->>>>>>> origin/master
         .sidenav {
             background-color: #f1f1f1;
             height: 100%;
+            overflow: scroll;
+            position: relative;
         }
 
         /* Set black background color, white text and some padding */
@@ -39,6 +36,7 @@
             }
             .row.content {height: auto;}
         }
+
     </style>
 </head>
 <body data-ng-app ="app" ng-controller="MinCtrl">
@@ -58,17 +56,17 @@
                 <li><a data-toggle="pill" href="#chicago">Chicago, IL</a></li>
                 <li><a data-toggle="pill" href="#gainesville" data-ng-click="gainesville()">Gainesville, FL</a></li>
                 <li><a data-toggle="pill" href="#houston">Houston, TX</a></li>
-                <li><a data-toggle="pill" href="#johns_Creek">Johns Creek, GA</a></li>
+                <li><a data-toggle="pill" href="#johns_Creek" data-ng-click="jcfunction()">Johns Creek, GA</a></li>
                 <li><a data-toggle="pill" href="#las_Vegas">Las Vegas, NV</a></li>
                 <li><a data-toggle="pill" href="#los_Angeles">Los Angeles, CA</a></li>
                 <li><a data-toggle="pill" href="#louisville">Louisville, KY</a></li>
-                <li><a data-toggle="pill" href="#minneapolis">Minneapolis, MN</a></li>
-                <li><a data-toggle="pill" href="#new_Orleans">New Orleans, LA</a></li>
-                <li><a data-toggle="pill" href="#philadelphia">Philadelphia, PA</a></li>
+                <li><a data-toggle="pill" href="#minneapolis" data-ng-click="mifunction()">Minneapolis, MN</a></li>
+                <li><a data-toggle="pill" href="#new_Orleans" data-ng-click="nrfunction()">New Orleans, LA</a></li>
+                <li><a data-toggle="pill" href="#philadelphia" data-ng-click="phfunction()">Philadelphia, PA</a></li>
                 <li><a data-toggle="pill" href="#pittsburgh">Pittsburgh, PA</a></li>
-                <li><a data-toggle="pill" href="#sacramento">Sacramento, CA</a></li>
+                <li><a data-toggle="pill" href="#sacramento" data-ng-click="scfunction()">Sacramento, CA</a></li>
                 <li><a data-toggle="pill" href="#san_Diego">San Diego, CA</a></li>
-                <li><a data-toggle="pill" href="#san_Francisco">San Francisco, CA</a></li>
+                <li><a data-toggle="pill" href="#san_Francisco" data-ng-click="sffunction()">San Francisco, CA</a></li>
                 <li><a data-toggle="pill" href="#washington">Washington, DC</a></li>
                 <li><a data-toggle="pill" href="#ann_Arbor">Ann Arbor, MI</a></li>
                 <li><a data-toggle="pill" href="#asheville">Asheville, NC</a></li>
@@ -90,7 +88,7 @@
                 <li><a data-toggle="pill" href="#portland">Portland, OR</a></li>
             </ul><br>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-9 container1">
             <div class="tab-content">
 
                 <div id="home" class="tab-pane fade in active">
@@ -455,12 +453,55 @@
 
                 <!--Houston, TX-->
                 <div id="houston" class="tab-pane fade ">
-                    <p><span class="badge">2</span> Comments:</p><br>
+                    <h4 class="text-danger">The Houston city is not using API, just providing data in Excel sheet</h4>
                 </div>
 
                 <!--Johns Creek, GA-->
                 <div id="johns_Creek" class="tab-pane fade ">
-                    <p><span class="badge">2</span> Comments:</p><br>
+                    <div class="row">
+                        <h2 class="page-header text-center text-primary">Johns Creek</h2>
+                        <div class="text-center">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> No. of requests</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>2015</td>
+                                        <td>{{jcvalue2015}}</td>
+                                    </tr>
+                                    <tr><td>2016</td>
+                                        <td>{{jcvalue2016}}</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> Population</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in population">
+                                        <td>{{x.Year}}</td>
+                                        <td>{{x.JohnsCreek}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="jc_chart1" style="margin-left: 110px"></div>
+                        <div id="jc_chart2" style="margin-left: 110px"></div>
+                </div>
                 </div>
 
                 <!--Las Vegas, NV-->
@@ -475,22 +516,169 @@
 
                 <!--Louisville, KY-->
                 <div id="louisville" class="tab-pane fade ">
-                    <p><span class="badge">2</span> Comments:</p><br>
+                    <h4 CLASS="text-danger"> The Louisville is not providing API, just csv file</h4>
                 </div>
 
                 <!--Minneapolis, MN-->
                 <div id="minneapolis" class="tab-pane fade ">
-                    <p><span class="badge">2</span> Comments:</p><br>
+                    <div class="row">
+                        <h2 class="page-header text-center text-primary">Minneapolis</h2>
+                        <div class="text-center">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> No. of requests</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                    <td>2011</td>
+                                    <td>{{mi2011}}</td>
+                                    </tr>
+                                    <tr>
+                                    <td>2012</td>
+                                    <td>{{mi2012}}</td>
+                                    </tr>
+                                    <tr>
+                                    <td>2013</td>
+                                    <td>{{mi2013}}</td>
+                                    </tr>
+                                    <tr>
+                                    <td>2014</td>
+                                    <td>{{mi2014}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2015</td>
+                                        <td>{{mi2015}}</td>
+                                    </tr>
+                                    <tr><td>2016</td>
+                                        <td>{{mi2016}}</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> Population</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in population">
+                                        <td>{{x.Year}}</td>
+                                        <td>{{x.Minneapolis}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="mi_chart1" style="margin-left: 110px"></div>
+                        <div id="mi_chart2" style="margin-left: 110px"></div>
+                </div>
                 </div>
 
                 <!--New Orleans, LA-->
                 <div id="new_Orleans" class="tab-pane fade ">
-                    <p><span class="badge">2</span> Comments:</p><br>
+                    <div class="row">
+                        <h2 class="page-header text-center text-primary">New Orleans</h2>
+                        <div class="text-center">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> No. of requests</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in novalue">
+                                        <td>{{x.year}}</td>
+                                        <td>{{x.count_ticket_id}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> Population</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in population">
+                                        <td>{{x.Year}}</td>
+                                        <td>{{x.New_Orleans}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="nr_chart1" style="margin-left: 110px"></div>
+                        <div id="nr_chart2" style="margin-left: 110px"></div>
+                    </div>
                 </div>
 
                 <!--Philadelphia, PA-->
                 <div id="philadelphia" class="tab-pane fade ">
-                    <p><span class="badge">2</span> Comments:</p><br>
+                    <div class="row">
+                        <h2 class="page-header text-center text-primary">Philadelphia</h2>
+                        <div class="text-center">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> No. of requests</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>2014</td>
+                                        <td>{{phvalue2014}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2015</td>
+                                        <td>{{phvalue2015}}</td>
+                                    </tr>
+                                    <tr><td>2016</td>
+                                        <td>{{phvalue2016}}</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> Population</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in population">
+                                        <td>{{x.Year}}</td>
+                                        <td>{{x.JohnsCreek}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="ph_chart1" style="margin-left: 110px"></div>
+                        <div id="ph_chart2" style="margin-left: 110px"></div>
+                    </div>
                 </div>
 
                 <!--Pittsburgh, PA-->
@@ -500,7 +688,60 @@
 
                 <!--Sacramento, CA-->
                 <div id="sacramento" class="tab-pane fade ">
-                    <p><span class="badge">2</span> Comments:</p><br>
+                    <div class="row">
+                        <h2 class="page-header text-center text-primary">Sacramento</h2>
+                        <div class="text-center">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> No. of requests</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>{{2013}}</td>
+                                        <td>{{scvalue2013}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{2014}}</td>
+                                        <td>{{scvalue2014}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{2015}}</td>
+                                        <td>{{scvalue2015}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{2016}}</td>
+                                        <td>{{scvalue2016}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> Population</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in population">
+                                        <td>{{x.Year}}</td>
+                                        <td>{{x.Sacramento}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="sc_chart1" style="margin-left: 110px"></div>
+                        <div id="sc_chart2" style="margin-left: 110px"></div>
+                    </div>
                 </div>
 
                 <!--San Diego, CA-->
@@ -510,7 +751,48 @@
 
                 <!--San Francisco, CA-->
                 <div id="san_Francisco" class="tab-pane fade ">
-                    <p><span class="badge">2</span> Comments:</p><br>
+                    <div class="row">
+                        <h2 class="page-header text-center text-primary">san Francisco</h2>
+                        <div class="text-center">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> No. of requests</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in sfvalue">
+                                        <td>{{x.year}}</td>
+                                        <td>{{x.count_service_request_id}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> Population</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in population">
+                                        <td>{{x.Year}}</td>
+                                        <td>{{x.San_Francisco}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="sf_chart1" style="margin-left: 110px"></div>
+                        <div id="sf_chart2" style="margin-left: 110px"></div>
+                    </div>
                 </div>
 
                 <!--Washington, DC-->
@@ -611,9 +893,5 @@
         </div>
     </div>
 </div>
-<footer class="container-fluid">
-    <p>Footer Text</p>
-</footer>
-
 </body>
 </html>

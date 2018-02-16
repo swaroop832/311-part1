@@ -120,7 +120,6 @@ app.controller("MinCtrl",function ($scope,$http) {
         })
     };
 
-<<<<<<< HEAD
 //Gainesville api
 
 
@@ -138,9 +137,131 @@ app.controller("MinCtrl",function ($scope,$http) {
         })
     };
 
+// Johns Creek, GA
 
-=======
->>>>>>> origin/master
+    $scope.jcfunction = function () {
+
+        $http.get("https://services1.arcgis.com/bqfNVPUK3HOnCFmA/arcgis/rest/services/Citizen_Requests_and_Calls/FeatureServer/0/query?where=ReportedDate%20%3E%3D%20%272016-01-01T06%3A00%3A00.000Z%27%20AND%20ReportedDate%20%3C%3D%20%272016-12-31T06%3A00%3A00.000Z%27&outFields=TaskID&returnCountOnly=true&outSR=4326&f=json").then(function (value) {
+
+            $scope.jcvalue2016 = value.data.count;
+
+
+        });
+        $http.get("https://services1.arcgis.com/bqfNVPUK3HOnCFmA/arcgis/rest/services/Citizen_Requests_and_Calls/FeatureServer/0/query?where=ReportedDate%20%3E%3D%20%272015-01-01T06%3A00%3A00.000Z%27%20AND%20ReportedDate%20%3C%3D%20%272015-12-31T06%3A00%3A00.000Z%27&outFields=TaskID&returnCountOnly=true&outSR=4326&f=json").then(function (value) {
+
+            $scope.jcvalue2015 = value.data.count;
+            drawChartx(0,0,0,0,0,$scope.jcvalue2015,$scope.jcvalue2016,'jc_chart1');
+            drawCharty(0,0,0,0,0,$scope.jcvalue2015/$scope.population[5].JohnsCreek,$scope.jcvalue2016/$scope.population[6].JohnsCreek,'jc_chart2')
+
+        })
+
+    };
+
+    //Minneapolis Api
+
+    $scope.mifunction = function () {
+
+        $http.get("https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/311_2011/FeatureServer/0/query?where=1%3D1&outFields=CASEID&returnCountOnly=true&outSR=4326&f=json").then(function (value) {
+           $scope.mi2011 = value.data.count;
+
+        $http.get("https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/311_Incidents_2012/FeatureServer/0/query?where=1%3D1&outFields=CASEID&returnCountOnly=true&outSR=4326&f=json").then(function (value) {
+            $scope.mi2012 = value.data.count;
+        $http.get("https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/311_Incidents_2013/FeatureServer/0/query?where=1%3D1&outFields=CASEID&returnCountOnly=true&outSR=4326&f=json").then(function (value) {
+            $scope.mi2013 = value.data.count;
+
+        $http.get("https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/311_2014/FeatureServer/0/query?where=1%3D1&outFields=CASEID&returnCountOnly=true&outSR=4326&f=json").then(function (value) {
+            $scope.mi2014 = value.data.count;
+
+        $http.get("https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/311_Public_2015/FeatureServer/0/query?where=1%3D1&outFields=CASEID&returnCountOnly=true&outSR=4326&f=json").then(function (value) {
+            $scope.mi2015 = value.data.count;
+
+        $http.get("https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Public_311_2016/FeatureServer/0/query?where=1%3D1&outFields=*&returnCountOnly=true&outSR=4326&f=json").then(function (value) {
+            $scope.mi2016 = value.data.count;
+            drawChartx(0,$scope.mi2011,$scope.mi2012,$scope.mi2013,$scope.mi2014,$scope.mi2015,$scope.mi2016,'mi_chart1');
+            drawCharty(0,$scope.mi2011/$scope.population[1].Minneapolis,$scope.mi2012/$scope.population[2].Minneapolis,$scope.mi2013/$scope.population[3].Minneapolis,$scope.mi2014/$scope.population[4].Minneapolis,$scope.mi2015/$scope.population[5].Minneapolis,$scope.mi2016/$scope.population[6].Minneapolis,'mi_chart2');
+        });});});});});});
+    };
+
+
+    // New Orleans Api
+
+    $scope.nrfunction = function () {
+
+        $http.get("https://data.nola.gov/resource/m959-fs8u.json?$select=date_extract_y(ticket_created_date_time)%20as%20year,count(ticket_id)&$group=year&$order=year").then(function (value) {
+
+            $scope.novalue = value.data;
+            $scope.novalue2012 = $scope.novalue[0].count_ticket_id;
+            $scope.novalue2013 = $scope.novalue[1].count_ticket_id;
+            $scope.novalue2014 = $scope.novalue[2].count_ticket_id;
+            $scope.novalue2015 = $scope.novalue[3].count_ticket_id;
+            $scope.novalue2016 = $scope.novalue[4].count_ticket_id;
+            drawChartx(0,0,$scope.novalue2012,$scope.novalue2013,$scope.novalue2014,$scope.novalue2015,$scope.novalue2016,'nr_chart1');
+            drawCharty(0,0,$scope.novalue2012/$scope.population[2].New_Orleans,$scope.novalue2013/$scope.population[3].New_Orleans,$scope.novalue2014/$scope.population[4].New_Orleans,$scope.novalue2015/$scope.population[5].New_Orleans,$scope.novalue2016/$scope.population[6].New_Orleans,'nr_chart2');
+        })
+    };
+
+    //Philadelphia, PA
+
+    $scope.phfunction = function () {
+
+        $http.get("https://phl.carto.com/api/v2/sql?q=SELECT%20count(cartodb_id)%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E=%20%272016-01-01%27%20AND%20requested_datetime%20%3C%20%272016-12-31%27").then(function (value) {
+
+            $scope.phvalue2016 = value.data.rows[0].count;
+            console.log($scope.phvalue2016);
+        $http.get("https://phl.carto.com/api/v2/sql?q=SELECT%20count(cartodb_id)%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E=%20%272015-01-01%27%20AND%20requested_datetime%20%3C%20%272015-12-31%27").then(function (value) {
+
+            $scope.phvalue2015 = value.data.rows[0].count;
+        $http.get("https://phl.carto.com/api/v2/sql?q=SELECT%20count(cartodb_id)%20FROM%20public_cases_fc%20WHERE%20requested_datetime%20%3E=%20%272014-01-01%27%20AND%20requested_datetime%20%3C%20%272014-12-31%27").then(function (value) {
+
+            $scope.phvalue2014 = value.data.rows[0].count;
+            console.log($scope.phvalue2014);
+            drawChartx(0,0,0,0,$scope.phvalue2014,$scope.phvalue2015,$scope.phvalue2016,'ph_chart1');
+            drawCharty(0,0,0,0,$scope.phvalue2014/$scope.population[4].Philadelphia,$scope.phvalue2015/$scope.population[5].Philadelphia,$scope.phvalue2016/$scope.population[6].Philadelphia,'ph_chart2');
+        }); }); });
+    };
+
+    //Sacramento
+
+    $scope.scfunction = function () {
+
+        $http.get("https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/311Calls_2016/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID&returnCountOnly=true&outSR=4326&f=json").then(function (value) {
+            $scope.scvalue2016 = value.data.count;
+            $http.get("https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/311Calls_2015/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID&returnCountOnly=true&outSR=4326&f=json").then(function (value2) {
+                $scope.scvalue2015 = value2.data.count;
+                $http.get("https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/311Calls_2014/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID&returnCountOnly=true&outSR=4326&f=json").then(function (value3) {
+                    $scope.scvalue2014 = value3.data.count;
+                    $http.get("https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/311Calls_2013/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID&returnCountOnly=true&outSR=4326&f=json").then(function (value4) {
+                        $scope.scvalue2013 = value4.data.count;
+                        drawChartx(0,0,0,$scope.scvalue2013,$scope.scvalue2014,$scope.scvalue2015,$scope.scvalue2016,'sc_chart1');
+                        drawCharty(0,0,0,$scope.scvalue2013/$scope.population[3].Sacramento,$scope.scvalue2014/$scope.population[4].Sacramento,$scope.scvalue2015/$scope.population[5].Sacramento,$scope.scvalue2016/$scope.population[6].Sacramento,'sc_chart2')
+                    })
+                })
+            })
+        })
+    };
+
+    //San Francisco, CA
+
+    $scope.sffunction = function () {
+
+        $http.get("https://data.sfgov.org/resource/ktji-gk7t.json?$select=date_extract_y(requested_datetime)%20as%20year,count(service_request_id)&$group=year&$order=year").then(function (value) {
+
+            $scope.sfvalue = value.data;
+            $scope.sfvalue2010 = value.data[2].count_service_request_id;
+            $scope.sfvalue2011 = value.data[3].count_service_request_id;
+            $scope.sfvalue2012 = value.data[4].count_service_request_id;
+            $scope.sfvalue2013 = value.data[5].count_service_request_id;
+            $scope.sfvalue2014 = value.data[6].count_service_request_id;
+            $scope.sfvalue2015 = value.data[7].count_service_request_id;
+            $scope.sfvalue2016 = value.data[8].count_service_request_id;
+            drawChartx($scope.sfvalue2010,$scope.sfvalue2011,$scope.sfvalue2012,$scope.sfvalue2013,$scope.sfvalue2014,$scope.sfvalue2015,$scope.sfvalue2016,'sf_chart1');
+            drawCharty($scope.sfvalue2010/$scope.population[0].San_Francisco,$scope.sfvalue2011/$scope.population[1].San_Francisco,$scope.sfvalue2012/$scope.population[2].San_Francisco,$scope.sfvalue2013/$scope.population[3].San_Francisco,$scope.sfvalue2014/$scope.population[4].San_Francisco,$scope.sfvalue2015/$scope.population[5].San_Francisco,$scope.sfvalue2016/$scope.population[6].San_Francisco,'sf_chart2')
+
+        })
+    };
+
+
+
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChartx);
         function drawChartx(var0, var1 , var2, var3, var4, var5, var6,var7) {
@@ -195,7 +316,14 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 229598,
             "Boston" :620701,
             "Chattanooga": 170646,
-            "Gainesville": 124700
+            "Gainesville": 124700,
+            "JohnsCreek" : 77190,
+            "Minneapolis" : 383134,
+             "New_Orleans": 347903,
+             "Philadelphia" : 1528427,
+            "Sacramento" : 467597,
+            "San_Francisco" : 805766
+
         },
         {
             "Year" : 2011,
@@ -205,7 +333,13 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 228903,
             "Boston" :630195,
             "Chattanooga": 172068,
-            "Gainesville": 125746
+            "Gainesville": 125746,
+            "JohnsCreek" : 79434,
+            "Minneapolis" : 388073,
+            "New_Orleans": 360840,
+            "Philadelphia" : 1539022,
+            "Sacramento" : 471425,
+            "San_Francisco" : 815672
         },
         {
             "Year" : 2012,
@@ -215,7 +349,13 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 229439,
             "Boston" :641911,
             "Chattanooga": 173869,
-            "Gainesville": 126277
+            "Gainesville": 126277,
+            "JohnsCreek" : 82066,
+            "Minneapolis" : 392821,
+            "New_Orleans": 370138,
+            "Philadelphia" : 1550379,
+            "Sacramento" : 475113,
+            "San_Francisco" : 828816
         },
         {
             "Year" : 2013,
@@ -225,7 +365,13 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 229117,
             "Boston" :651090,
             "Chattanooga": 174961,
-            "Gainesville": 126787
+            "Gainesville": 126787,
+            "JohnsCreek" : 82596,
+            "Minneapolis" : 400137,
+            "New_Orleans": 378886,
+            "Philadelphia" : 1555868,
+            "Sacramento" : 479201,
+            "San_Francisco" : 839280
         },
         {
             "Year" : 2014,
@@ -235,7 +381,13 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 228911,
             "Boston" :659180,
             "Chattanooga": 174749,
-            "Gainesville": 128212
+            "Gainesville": 128212,
+            "JohnsCreek" : 82944,
+            "Minneapolis" : 406619,
+            "New_Orleans": 384355,
+            "Philadelphia" : 1560609,
+            "Sacramento" : 483920,
+            "San_Francisco" : 850424
         },
         {
             "Year" : 2015,
@@ -245,7 +397,13 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 228320,
             "Boston" :665984,
             "Chattanooga": 176220,
-            "Gainesville": 130127
+            "Gainesville": 130127,
+            "JohnsCreek" : 83107,
+            "Minneapolis" : 410116,
+            "New_Orleans": 389738,
+            "Philadelphia" : 1564964,
+            "Sacramento" : 489202,
+            "San_Francisco" : 862004
         },
         {
             "Year" : 2016,
@@ -255,7 +413,13 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Baton_Rouge": 227715,
             "Boston" :673184,
             "Chattanooga": 177571,
-            "Gainesville": 131591
+            "Gainesville": 131591,
+            "JohnsCreek" : 83873,
+            "Minneapolis" : 413651,
+            "New_Orleans": 391495,
+            "Philadelphia" : 1567872,
+            "Sacramento" : 495234,
+            "San_Francisco" : 870887
         }
     ];
 });
