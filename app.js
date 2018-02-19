@@ -303,14 +303,39 @@ app.controller("MinCtrl",function ($scope,$http) {
                     $http.get("https://maps2.dcgis.dc.gov/dcgis/rest/services/DDOT/Cityworks/MapServer/1/query?where=INITIATEDDATE%20%3E%3D%20%272013-01-01T06%3A00%3A00.000Z%27%20AND%20INITIATEDDATE%20%3C%3D%20%272013-12-31T06%3A00%3A00.000Z%27&outFields=OBJECTID&returnCountOnly=true&outSR=4326&f=json").then(function (value4) {
                         $scope.wdvalue2013 = value4.data.count;
                         $http.get("https://maps2.dcgis.dc.gov/dcgis/rest/services/DDOT/Cityworks/MapServer/1/query?where=INITIATEDDATE%20%3E%3D%20%272014-01-01T06%3A00%3A00.000Z%27%20AND%20INITIATEDDATE%20%3C%3D%20%272014-12-31T06%3A00%3A00.000Z%27&outFields=OBJECTID&returnCountOnly=true&outSR=4326&f=json").then(function (value5) {
-                          $scope.wdvalue2014 = value5.data.count;
-                          $http.get("https://maps2.dcgis.dc.gov/dcgis/rest/services/DDOT/Cityworks/MapServer/1/query?where=INITIATEDDATE%20%3E%3D%20%272015-01-01T06%3A00%3A00.000Z%27%20AND%20INITIATEDDATE%20%3C%3D%20%272015-12-31T06%3A00%3A00.000Z%27&outFields=OBJECTID&returnCountOnly=true&outSR=4326&f=json").then(function (value6) {
-                              $scope.wdvalue2015 = value6.data.count;
-                              $http.get("https://maps2.dcgis.dc.gov/dcgis/rest/services/DDOT/Cityworks/MapServer/1/query?where=INITIATEDDATE%20%3E%3D%20%272016-01-01T06%3A00%3A00.000Z%27%20AND%20INITIATEDDATE%20%3C%3D%20%272016-12-31T06%3A00%3A00.000Z%27&outFields=OBJECTID&returnCountOnly=true&outSR=4326&f=json").then(function (value7) {
-                                  $scope.wdvalue2016 = value7.data.count;
-                                  drawChartx($scope.wdvalue2010,$scope.wdvalue2011,$scope.wdvalue2012,$scope.wdvalue2013,$scope.wdvalue2014,$scope.wdvalue2015,$scope.wdvalue2016,'wd_chart1');
-                                  drawCharty($scope.wdvalue2010/$scope.population[0].Washington,$scope.wdvalue2011/$scope.population[1].Washington,$scope.wdvalue2012/$scope.population[2].Washington,$scope.wdvalue2013/$scope.population[3].Washington,$scope.wdvalue2014/$scope.population[4].Washington,$scope.wdvalue2015/$scope.population[5].Washington,$scope.wdvalue2016/$scope.population[6].Washington,'wd_chart2')
-                              })})})})})})})};
+                            $scope.wdvalue2014 = value5.data.count;
+                            $http.get("https://maps2.dcgis.dc.gov/dcgis/rest/services/DDOT/Cityworks/MapServer/1/query?where=INITIATEDDATE%20%3E%3D%20%272015-01-01T06%3A00%3A00.000Z%27%20AND%20INITIATEDDATE%20%3C%3D%20%272015-12-31T06%3A00%3A00.000Z%27&outFields=OBJECTID&returnCountOnly=true&outSR=4326&f=json").then(function (value6) {
+                                $scope.wdvalue2015 = value6.data.count;
+                                $http.get("https://maps2.dcgis.dc.gov/dcgis/rest/services/DDOT/Cityworks/MapServer/1/query?where=INITIATEDDATE%20%3E%3D%20%272016-01-01T06%3A00%3A00.000Z%27%20AND%20INITIATEDDATE%20%3C%3D%20%272016-12-31T06%3A00%3A00.000Z%27&outFields=OBJECTID&returnCountOnly=true&outSR=4326&f=json").then(function (value7) {
+                                    $scope.wdvalue2016 = value7.data.count;
+                                    drawChartx($scope.wdvalue2010, $scope.wdvalue2011, $scope.wdvalue2012, $scope.wdvalue2013, $scope.wdvalue2014, $scope.wdvalue2015, $scope.wdvalue2016, 'wd_chart1');
+                                    drawCharty($scope.wdvalue2010 / $scope.population[0].Washington, $scope.wdvalue2011 / $scope.population[1].Washington, $scope.wdvalue2012 / $scope.population[2].Washington, $scope.wdvalue2013 / $scope.population[3].Washington, $scope.wdvalue2014 / $scope.population[4].Washington, $scope.wdvalue2015 / $scope.population[5].Washington, $scope.wdvalue2016 / $scope.population[6].Washington, 'wd_chart2')
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    };
+
+    //Oakland, CA Api
+
+    $scope.oakfunction = function () {
+
+        $http.get("https://data.oaklandnet.com/resource/x4j5-hbm8.json?$select=date_extract_y(datetimeinit)%20as%20year,count(requestid)&$group=year&$order=year").then(function (value) {
+            $scope.oakvalue = value.data;
+            $scope.oak2010 = $scope.oakvalue[0].count_requestid;
+            $scope.oak2011 = $scope.oakvalue[1].count_requestid;
+            $scope.oak2012 = $scope.oakvalue[2].count_requestid;
+            $scope.oak2013 = $scope.oakvalue[3].count_requestid;
+            $scope.oak2014 = $scope.oakvalue[4].count_requestid;
+            $scope.oak2015 = $scope.oakvalue[5].count_requestid;
+            $scope.oak2016 = $scope.oakvalue[6].count_requestid;
+            drawChartx($scope.oak2010,$scope.oak2011,$scope.oak2012,$scope.oak2013,$scope.oak2014,$scope.oak2015,$scope.oak2016,'oak_chart1');
+            drawCharty($scope.oak2010/$scope.population[0].Oakland,$scope.oak2011/$scope.population[1].Oakland,$scope.oak2012/$scope.population[2].Oakland,$scope.oak2013/$scope.population[3].Oakland,$scope.oak2014/$scope.population[4].Oakland,$scope.oak2015/$scope.population[5].Oakland,$scope.oak2016/$scope.population[6].Oakland,'oak_chart2')
+        })
+    };
 
 
     google.charts.load('current', {'packages': ['corechart']});
@@ -375,7 +400,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "San_Francisco" : 805766,
             "LosAngeles": 3796292,
             "Cincinnati": 296913,
-            "Washington": 605183
+            "Washington": 605183,
+            "Oakland": 391724
 
         },
         {
@@ -395,7 +421,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "San_Francisco" : 815672,
             "LosAngeles": 3825393,
             "Cincinnati": 296101,
-            "Washington": 620477
+            "Washington": 620477,
+            "Oakland": 396515
         },
         {
             "Year" : 2012,
@@ -414,7 +441,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "San_Francisco" : 828816,
             "LosAngeles": 3858137,
             "Cincinnati": 296794,
-            "Washington": 635327
+            "Washington": 635327,
+            "Oakland": 401704
         },
         {
             "Year" : 2013,
@@ -433,7 +461,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "San_Francisco" : 839280,
             "LosAngeles": 3890436,
             "Cincinnati": 297444,
-            "Washington": 649165
+            "Washington": 649165,
+            "Oakland": 407205
         },
         {
             "Year" : 2014,
@@ -452,7 +481,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "San_Francisco" : 850424,
             "LosAngeles": 3920173,
             "Cincinnati": 298100,
-            "Washington": 659005
+            "Washington": 659005,
+            "Oakland": 413313
         },
         {
             "Year" : 2015,
@@ -471,7 +501,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "San_Francisco" : 862004,
             "LosAngeles": 3949149,
             "Cincinnati": 298654,
-            "Washington": 670377
+            "Washington": 670377,
+            "Oakland": 417870
         },
         {
             "Year" : 2016,
@@ -490,7 +521,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "San_Francisco" : 870887,
             "LosAngeles": 3976322,
             "Cincinnati": 298800,
-            "Washington": 681170
+            "Washington": 681170,
+            "Oakland": 420005
         }
     ];
 });
