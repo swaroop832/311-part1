@@ -337,6 +337,24 @@ app.controller("MinCtrl",function ($scope,$http) {
         })
     };
 
+    // Santa Monica, CA Api
+
+    $scope.santafunction = function () {
+
+        $http.get("https://data.smgov.net/resource/tsas-mvez.json?$select=date_trunc_y(request_date)%20as%20year,count(id)&$group=year&$order=year").then(function (value) {
+            $scope.santavalue = value.data;
+            $scope.santa2010 = $scope.santavalue[5].count_request_id;
+            $scope.santa2011 = $scope.santavalue[6].count_request_id;
+            $scope.santa2012 = $scope.santavalue[7].count_request_id;
+            $scope.santa2013 = $scope.santavalue[8].count_request_id;
+            $scope.santa2014 = $scope.santavalue[9].count_request_id;
+            $scope.santa2015 = $scope.santavalue[10].count_request_id;
+            $scope.santa2016 = $scope.santavalue[11].count_request_id;
+            drawChartx($scope.santa2010,$scope.santa2011,$scope.santa2012,$scope.santa2013,$scope.santa2014,$scope.santa2015,$scope.santa2016,'santa_chart1');
+            drawCharty($scope.santa2010/$scope.population[0].SantaMonica,$scope.santa2011/$scope.population[1].SantaMonica,$scope.santa2012/$scope.population[2].SantaMonica,$scope.santa2013/$scope.population[3].SantaMonica,$scope.santa2014/$scope.population[4].SantaMonica,$scope.santa2015/$scope.population[5].SantaMonica,$scope.santa2016/$scope.population[6].SantaMonica,'santa_chart2')
+        })
+    };
+
 
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChartx);
@@ -401,7 +419,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "LosAngeles": 3796292,
             "Cincinnati": 296913,
             "Washington": 605183,
-            "Oakland": 391724
+            "Oakland": 391724,
+            "SantaMonica": 89791
 
         },
         {
@@ -422,7 +441,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "LosAngeles": 3825393,
             "Cincinnati": 296101,
             "Washington": 620477,
-            "Oakland": 396515
+            "Oakland": 396515,
+            "SantaMonica": 90600
         },
         {
             "Year" : 2012,
@@ -442,7 +462,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "LosAngeles": 3858137,
             "Cincinnati": 296794,
             "Washington": 635327,
-            "Oakland": 401704
+            "Oakland": 401704,
+            "SantaMonica": 91508
         },
         {
             "Year" : 2013,
@@ -462,7 +483,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "LosAngeles": 3890436,
             "Cincinnati": 297444,
             "Washington": 649165,
-            "Oakland": 407205
+            "Oakland": 407205,
+            "SantaMonica": 92276
         },
         {
             "Year" : 2014,
@@ -482,7 +504,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "LosAngeles": 3920173,
             "Cincinnati": 298100,
             "Washington": 659005,
-            "Oakland": 413313
+            "Oakland": 413313,
+            "SantaMonica": 92346
         },
         {
             "Year" : 2015,
@@ -502,7 +525,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "LosAngeles": 3949149,
             "Cincinnati": 298654,
             "Washington": 670377,
-            "Oakland": 417870
+            "Oakland": 417870,
+            "SantaMonica": 92685
         },
         {
             "Year" : 2016,
@@ -522,7 +546,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "LosAngeles": 3976322,
             "Cincinnati": 298800,
             "Washington": 681170,
-            "Oakland": 420005
+            "Oakland": 420005,
+            "SantaMonica": 92478
         }
     ];
 });

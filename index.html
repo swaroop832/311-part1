@@ -86,7 +86,7 @@
                 <li><a data-toggle="pill" href="#cincinnati" data-ng-click= "cincifunction()">Cincinnati, OH</a></li>
                 <li><a data-toggle="pill" href="#jersey_City">Jersey City, NJ</a></li>
                 <li><a data-toggle="pill" href="#salt_Lake_City">Salt Lake City, UT</a></li>
-                <li><a data-toggle="pill" href="#santa_Monica">Santa Monica, CA</a></li>
+                <li><a data-toggle="pill" href="#santa_Monica" data-ng-click= "santafunction()">Santa Monica, CA</a></li>
                 <li><a data-toggle="pill" href="#st_Louis">St. Louis, MO</a></li>
                 <li><a data-toggle="pill" href="#oakland" data-ng-click="oakfunction()">Oakland, CA</a></li>
                 <li><a data-toggle="pill" href="#san_Jose">San Jose, CA</a></li>
@@ -994,7 +994,72 @@
 
                 <!--Santa Monica, CA-->
                 <div id="santa_Monica" class="tab-pane fade ">
-                    <p><span class="badge">2</span> Comments:</p><br>
+                    <div class="row">
+                        <h2 class="page-header text-center text-primary">Santa Monica</h2>
+                        <div class="text-center">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> No. of requests</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>{{2010}}</td>
+                                        <td>{{santa2010 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{2011}}</td>
+                                        <td>{{santa2011}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{2012}}</td>
+                                        <td>{{santa2012}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{2013}}</td>
+                                        <td>{{santa2013}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{2014}}</td>
+                                        <td>{{santa2014}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{2015}}</td>
+                                        <td>{{santa2015}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{2016}}</td>
+                                        <td>{{santa2016}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-4">
+                                <table class="table table-primary table-bodered text-primary text-center">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th style="text-align: center">year</th>
+                                        <th style="text-align: center"> Population</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="x in population">
+                                        <td>{{x.Year}}</td>
+                                        <td>{{x.SantaMonica}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="santa_chart1" style="margin-left: 110px"></div>
+                        <div id="santa_chart2" style="margin-left: 110px"></div>
+                    </div>
                 </div>
 
                 <!--St. Louis, MO-->
@@ -1005,7 +1070,7 @@
                 <!--Oakland, CA-->
                 <div id="oakland" class="tab-pane fade ">
                     <div class="row">
-                        <h2 class="page-header text-center text-primary">Cincinnati City</h2>
+                        <h2 class="page-header text-center text-primary">Oakland</h2>
                         <div class="text-center">
                             <div class="col-md-2"></div>
                             <div class="col-md-4">
