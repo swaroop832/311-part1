@@ -2,8 +2,6 @@ var app = angular.module("app", []);
 
 app.controller("MinCtrl",function ($scope,$http) {
 
-
-
         $scope.kcfunction = function () {
 
             $http.get("https://data.kcmo.org/resource/cyqf-nban.json?$select=creation_year,count(case_id)&$group=creation_year").then(function (value) {
@@ -356,6 +354,49 @@ app.controller("MinCtrl",function ($scope,$http) {
     };
 
 
+    //chicago Api
+
+    $scope.chfunction = function () {
+
+        $http.get("https://data.cityofchicago.org/resource/6zsd-86xi.json?$select=date_extract_y(date)%20as%20year,count(case_number)&$group=year&$order=year").then(function (value) {
+            $scope.chvalue = value.data;
+            console.log($scope.chvalue);
+            $scope.chvalue2010 = $scope.chvalue[9].count_case_number;
+            $scope.chvalue2011 = $scope.chvalue[10].count_case_number;
+            $scope.chvalue2012 = $scope.chvalue[11].count_case_number;
+            $scope.chvalue2013 = $scope.chvalue[12].count_case_number;
+            $scope.chvalue2014 = $scope.chvalue[13].count_case_number;
+            $scope.chvalue2015 = $scope.chvalue[14].count_case_number;
+            $scope.chvalue2016 = $scope.chvalue[15].count_case_number;
+            drawChartx($scope.chvalue2010,$scope.chvalue2011,$scope.chvalue2012,$scope.chvalue2013,$scope.chvalue2014,$scope.chvalue2015,$scope.chvalue2016,'ch_chart1');
+            drawCharty($scope.chvalue2010/$scope.population[0].chicago,$scope.chvalue2011/$scope.population[1].chicago,$scope.chvalue2012/$scope.population[2].chicago,$scope.chvalue2013/$scope.population[3].chicago,$scope.chvalue2014/$scope.population[4].chicago,$scope.chvalue2015/$scope.population[5].chicago,$scope.chvalue2016/$scope.population[6].chicago,'ch_chart2')
+        })
+
+    };
+
+    //houston Api
+
+    $scope.hsfunction = function () {
+
+        $http.jsonp("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272011-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272011-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value) {
+         $scope.hsvalue2011 = value.data.count;
+        console.log($scope.hsvalue2011);
+         $http.get("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272012-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272012-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value2) {
+             $scope.hsvalue2012 = value2.data.count;
+             $http.get("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272013-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272013-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value3) {
+              $scope.hsvalue2013 = value3.data.count;
+              $http.get("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272014-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272014-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value4) {
+                $scope.hsvalue2014 = value4.data.count;
+                $http.get("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272015-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272015-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value5) {
+                    $scope.hsvalue2015 = value5.data.count;
+                    $http.get("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272016-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272016-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value6) {
+                       $scope.hsvalue2016 = value6.data.count;
+                       drawChartx(0,$scope.hsvalue2011,$scope.hsvalue2012,$scope.hsvalue2013,$scope.hsvalue2014,$scope.hsvalue2015,$scope.hsvalue2016,'hs_chart1');
+
+                    })})})})})});
+    };
+
+
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChartx);
         function drawChartx(var0, var1 , var2, var3, var4, var5, var6,var7) {
@@ -373,8 +414,8 @@ app.controller("MinCtrl",function ($scope,$http) {
                 title: '311 call service requests ',
                 curveType: 'function',
                 legend: {position: 'bottom'},
-                width:900
-                ,height:500,
+                width:600
+                ,height:400,
                 bar: {groupWidth: "50%"}
             };
             var chart = new google.visualization.ColumnChart(document.getElementById(var7));
@@ -395,8 +436,8 @@ app.controller("MinCtrl",function ($scope,$http) {
                 title: '311 call service requests Normilization ',
                 curveType: 'function',
                 legend: {position: 'bottom'},
-                width:900
-                ,height:500
+                width:600
+                ,height:400
             };
             var chart = new google.visualization.LineChart(document.getElementById(var7));
             chart.draw(data, options);
@@ -420,7 +461,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 296913,
             "Washington": 605183,
             "Oakland": 391724,
-            "SantaMonica": 89791
+            "SantaMonica": 89791,
+            "chicago" : 2697736
 
         },
         {
@@ -442,7 +484,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 296101,
             "Washington": 620477,
             "Oakland": 396515,
-            "SantaMonica": 90600
+            "SantaMonica": 90600,
+            "chicago" : 2705404
         },
         {
             "Year" : 2012,
@@ -463,7 +506,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 296794,
             "Washington": 635327,
             "Oakland": 401704,
-            "SantaMonica": 91508
+            "SantaMonica": 91508,
+            "chicago" : 2714120
         },
         {
             "Year" : 2013,
@@ -484,7 +528,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 297444,
             "Washington": 649165,
             "Oakland": 407205,
-            "SantaMonica": 92276
+            "SantaMonica": 92276,
+            "chicago" : 2718887
         },
         {
             "Year" : 2014,
@@ -505,7 +550,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 298100,
             "Washington": 659005,
             "Oakland": 413313,
-            "SantaMonica": 92346
+            "SantaMonica": 92346,
+            "chicago" : 2718530
         },
         {
             "Year" : 2015,
@@ -526,7 +572,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 298654,
             "Washington": 670377,
             "Oakland": 417870,
-            "SantaMonica": 92685
+            "SantaMonica": 92685,
+            "chicago" : 2713596
         },
         {
             "Year" : 2016,
@@ -547,7 +594,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 298800,
             "Washington": 681170,
             "Oakland": 420005,
-            "SantaMonica": 92478
+            "SantaMonica": 92478,
+            "chicago" : 2704958
         }
     ];
 });
