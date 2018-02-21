@@ -378,7 +378,7 @@ app.controller("MinCtrl",function ($scope,$http) {
 
     $scope.hsfunction = function () {
 
-        $http.jsonp("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272011-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272011-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value) {
+        $http.get("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272011-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272011-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value) {
          $scope.hsvalue2011 = value.data.count;
         console.log($scope.hsvalue2011);
          $http.get("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272012-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272012-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value2) {
@@ -416,7 +416,8 @@ app.controller("MinCtrl",function ($scope,$http) {
                 legend: {position: 'bottom'},
                 width:600
                 ,height:400,
-                bar: {groupWidth: "50%"}
+                bar: {groupWidth: "50%"},
+                colors : ['#e7711b']
             };
             var chart = new google.visualization.ColumnChart(document.getElementById(var7));
             chart.draw(data, options);
@@ -437,7 +438,8 @@ app.controller("MinCtrl",function ($scope,$http) {
                 curveType: 'function',
                 legend: {position: 'bottom'},
                 width:600
-                ,height:400
+                ,height:400,
+                colors : ['#e7711b']
             };
             var chart = new google.visualization.LineChart(document.getElementById(var7));
             chart.draw(data, options);
