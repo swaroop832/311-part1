@@ -588,7 +588,6 @@ app.controller("MinCtrl",function ($scope,$http) {
             ]);
             var options = {
                 title: '311 call service requests ',
-                curveType: 'function',
                 legend: {position: 'bottom'},
                 width:600
                 ,height:400,
@@ -611,7 +610,6 @@ app.controller("MinCtrl",function ($scope,$http) {
             ]);
             var options = {
                 title: '311 call service requests Normilization ',
-                curveType: 'function',
                 legend: {position: 'bottom'},
                 width:600
                 ,height:400,
