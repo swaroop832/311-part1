@@ -1,7 +1,181 @@
 var app = angular.module("app", []);
 
 app.controller("MinCtrl",function ($scope,$http) {
+    $("#all_chart").hide();
+    $("#compare_chart1").hide();
+    $("#compare_chart2").hide();
+    $scope.allfunction = function () {
 
+        $("#message").show();
+        $scope.kcfunction();$scope.nyfunction();$scope.aufunction();$scope.bafunction();$scope.bsfunction();$scope.ctfunction();$scope.gainesville();
+        $scope.jcfunction();$scope.mifunction();$scope.nrfunction();$scope.phfunction();$scope.scfunction();$scope.sffunction();$scope.losangeles();
+        $scope.cincifunction();$scope.wdfunction();$scope.oakfunction();$scope.santafunction();$scope.chfunction();
+
+        window.setTimeout(function(){
+            $("#message").hide();
+            $("#all_chart").show();
+                drawChart('all_chart');
+        },9000);
+
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart(var1) {
+            var data = google.visualization.arrayToDataTable([
+                ['Year', 'Kansas City', 'New York', 'Austin' , 'Baton Rouge', 'Boston', 'Chattanooga', 'Gainesville'],
+                ['2010',  $scope.mydata2010/$scope.population[0].Kansas_City,$scope.nyc2010/$scope.population[0].NewYork_City,0,0,$scope.bsvalue2010/$scope.population[0].Boston,$scope.ct2010/$scope.population[0].Chattanooga,0],
+                ['2011',  $scope.mydata2011/$scope.population[1].Kansas_City,$scope.nyc2011/$scope.population[1].NewYork_City,0,0,$scope.bsvalue2011/$scope.population[1].Boston,$scope.ct2011/$scope.population[1].Chattanooga,0],
+                ['2012',  $scope.mydata2012/$scope.population[2].Kansas_City,$scope.nyc2012/$scope.population[2].NewYork_City,0,0,$scope.bsvalue2012/$scope.population[2].Boston,$scope.ct2012/$scope.population[2].Chattanooga,0],
+                ['2013',  $scope.mydata2013/$scope.population[3].Kansas_City,$scope.nyc2013/$scope.population[3].NewYork_City,0,0,$scope.bsvalue2013/$scope.population[3].Boston,$scope.ct2013/$scope.population[3].Chattanooga,0],
+                ['2014',  $scope.mydata2014/$scope.population[4].Kansas_City,$scope.nyc2014/$scope.population[4].NewYork_City,$scope.au2014/$scope.population[4].Austin,0,$scope.bsvalue2014/$scope.population[4].Boston,$scope.ct2014/$scope.population[4].Chattanooga,$scope.gain2014/$scope.population[4].Gainesville],
+                ['2015',  $scope.mydata2015/$scope.population[5].Kansas_City,$scope.nyc2015/$scope.population[5].NewYork_City,$scope.au2015/$scope.population[5].Austin,0,$scope.bsvalue2015/$scope.population[5].Boston,$scope.ct2015/$scope.population[5].Chattanooga,$scope.gain2015/$scope.population[5].Gainesville],
+                ['2016',  $scope.mydata2016/$scope.population[6].Kansas_City,$scope.nyc2016/$scope.population[6].NewYork_City,$scope.au2016/$scope.population[6].Austin,$scope.ba2016/$scope.population[6].Baton_Rouge,$scope.bsvalue2016/$scope.population[6].Boston,$scope.ct2016/$scope.population[6].Chattanooga,$scope.gain2016/$scope.population[6].Gainesville]
+            ]);
+
+            var options = {
+                title: 'City Comparison from 2010 to 2016',
+                curveType: 'none',
+                dataOpacity : 2.0,
+                legend: { position: 'right' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById(var1));
+            chart.draw(data, options);
+        }
+    };
+
+    $scope.compare = function (my) {
+
+        $("#message1").show();
+        $("#compare_chart1").hide();
+        $("#compare_chart2").hide();
+        $scope.kcfunction();$scope.nyfunction();$scope.aufunction();$scope.bafunction();$scope.bsfunction();$scope.ctfunction();$scope.gainesville();
+        $scope.jcfunction();$scope.mifunction();$scope.nrfunction();$scope.phfunction();$scope.scfunction();$scope.sffunction();$scope.losangeles();
+        $scope.cincifunction();$scope.wdfunction();$scope.oakfunction();$scope.santafunction();$scope.chfunction();
+
+        window.setTimeout(function () {
+            if( my.sel1 === "Kansas_City" ) {
+                drawCharty($scope.mydata2010 / $scope.population[0].Kansas_City, $scope.mydata2011 / $scope.population[1].Kansas_City, $scope.mydata2012 / $scope.population[2].Kansas_City, $scope.mydata2013 / $scope.population[3].Kansas_City, $scope.mydata2014 / $scope.population[4].Kansas_City, $scope.mydata2015 / $scope.population[5].Kansas_City, $scope.mydata2016 / $scope.population[6].Kansas_City, 'compare_chart1');
+            }
+            if(my.sel1 ==="New_York"){
+                drawCharty($scope.nyc2010/$scope.population[0].NewYork_City,$scope.nyc2011/$scope.population[1].NewYork_City,$scope.nyc2012/$scope.population[2].NewYork_City,$scope.nyc2013/$scope.population[3].NewYork_City,$scope.nyc2014/$scope.population[4].NewYork_City,$scope.nyc2015/$scope.population[5].NewYork_City,$scope.nyc2016/$scope.population[6].NewYork_City,'compare_chart1');
+            }
+            if(my.sel1 ==="Austin"){
+                drawCharty(0,0,0,0,$scope.au2014/$scope.population[4].Austin,$scope.au2015/$scope.population[5].Austin,$scope.au2016/$scope.population[6].Austin,'compare_chart1');
+            }
+            if(my.sel1 ==="Baton_Rouge"){
+                drawCharty(0,0,0,0,0,0,$scope.ba2016/$scope.population[6].Baton_Rouge,'compare_chart1');
+            }
+            if(my.sel1 === "Boston"){
+                drawCharty($scope.bsvalue2010/$scope.population[0].Boston,$scope.bsvalue2011/$scope.population[1].Boston,$scope.bsvalue2012/$scope.population[2].Boston,$scope.bsvalue2013/$scope.population[3].Boston,$scope.bsvalue2014/$scope.population[4].Boston,$scope.bsvalue2015/$scope.population[5].Boston,$scope.bsvalue2016/$scope.population[6].Boston,'compare_chart1');
+            }
+            if(my.sel1 === "Chattanooga"){
+                drawCharty($scope.ct2010/$scope.population[0].Chattanooga,$scope.ct2011/$scope.population[1].Chattanooga,$scope.ct2012/$scope.population[2].Chattanooga,$scope.ct2013/$scope.population[3].Chattanooga,$scope.ct2014/$scope.population[4].Chattanooga,$scope.ct2015/$scope.population[5].Chattanooga,$scope.ct2016/$scope.population[6].Chattanooga,'compare_chart1');
+            }
+            if(my.sel1 === "Chicago"){
+                drawCharty($scope.chvalue2010/$scope.population[0].chicago,$scope.chvalue2011/$scope.population[1].chicago,$scope.chvalue2012/$scope.population[2].chicago,$scope.chvalue2013/$scope.population[3].chicago,$scope.chvalue2014/$scope.population[4].chicago,$scope.chvalue2015/$scope.population[5].chicago,$scope.chvalue2016/$scope.population[6].chicago,'compare_chart1')
+            }
+            if(my.sel1 === "Gainesville"){
+                drawCharty(0,0,0,0,$scope.gain2014/$scope.population[4].Gainesville,$scope.gain2015/$scope.population[5].Gainesville,$scope.gain2016/$scope.population[6].Gainesville,'compare_chart1');
+            }
+            if(my.sel1 ==="Johns_Creek"){
+                drawCharty(0,0,0,0,0,$scope.jcvalue2015/$scope.population[5].JohnsCreek,$scope.jcvalue2016/$scope.population[6].JohnsCreek,'compare_chart1');
+            }
+            if(my.sel1 === "Minneapolis"){
+                drawCharty(0,$scope.mi2011/$scope.population[1].Minneapolis,$scope.mi2012/$scope.population[2].Minneapolis,$scope.mi2013/$scope.population[3].Minneapolis,$scope.mi2014/$scope.population[4].Minneapolis,$scope.mi2015/$scope.population[5].Minneapolis,$scope.mi2016/$scope.population[6].Minneapolis,'compare1_chart1');
+            }
+            if(my.sel1 === "New_Orleans"){
+                drawCharty(0,0,$scope.novalue2012/$scope.population[2].New_Orleans,$scope.novalue2013/$scope.population[3].New_Orleans,$scope.novalue2014/$scope.population[4].New_Orleans,$scope.novalue2015/$scope.population[5].New_Orleans,$scope.novalue2016/$scope.population[6].New_Orleans,'compare_chart1');
+            }
+            if(my.sel1 === "Philadelphia"){
+                drawCharty(0,0,0,0,$scope.phvalue2014/$scope.population[4].Philadelphia,$scope.phvalue2015/$scope.population[5].Philadelphia,$scope.phvalue2016/$scope.population[6].Philadelphia,'compare_chart1');
+            }
+            if(my.sel1 === "Sacramento"){
+                drawCharty(0,0,0,$scope.scvalue2013/$scope.population[3].Sacramento,$scope.scvalue2014/$scope.population[4].Sacramento,$scope.scvalue2015/$scope.population[5].Sacramento,$scope.scvalue2016/$scope.population[6].Sacramento,'compare_chart1');
+            }
+            if(my.sel1 === "San_Francisco"){
+                drawCharty($scope.sfvalue2010/$scope.population[0].San_Francisco,$scope.sfvalue2011/$scope.population[1].San_Francisco,$scope.sfvalue2012/$scope.population[2].San_Francisco,$scope.sfvalue2013/$scope.population[3].San_Francisco,$scope.sfvalue2014/$scope.population[4].San_Francisco,$scope.sfvalue2015/$scope.population[5].San_Francisco,$scope.sfvalue2016/$scope.population[6].San_Francisco,'compare_chart1')
+            }
+            if(my.sel1 === "Washington"){
+                drawCharty($scope.wdvalue2010 / $scope.population[0].Washington, $scope.wdvalue2011 / $scope.population[1].Washington, $scope.wdvalue2012 / $scope.population[2].Washington, $scope.wdvalue2013 / $scope.population[3].Washington, $scope.wdvalue2014 / $scope.population[4].Washington, $scope.wdvalue2015 / $scope.population[5].Washington, $scope.wdvalue2016 / $scope.population[6].Washington, 'compare_chart1')
+            }
+            if(my.sel1 === "Cincinnati"){
+                drawCharty(0,0,$scope.cin2012/$scope.population[2].Cincinnati,$scope.cin2013/$scope.population[3].Cincinnati,$scope.cin2014/$scope.population[4].Cincinnati,$scope.cin2015/$scope.population[5].Cincinnati,$scope.cin2016/$scope.population[6].Cincinnati,'compare_chart1')
+            }
+            if(my.sel1 === "Los_Angeles"){
+                drawCharty(0,0,0,0,0,$scope.lagraphvalue2015/$scope.population[5].LosAngeles,$scope.lagraphvalue2016/$scope.population[6].LosAngeles,'compare_chart1');
+            }
+            if(my.sel1 === "Santa_Monica"){
+                drawCharty($scope.santa2010/$scope.population[0].SantaMonica,$scope.santa2011/$scope.population[1].SantaMonica,$scope.santa2012/$scope.population[2].SantaMonica,$scope.santa2013/$scope.population[3].SantaMonica,$scope.santa2014/$scope.population[4].SantaMonica,$scope.santa2015/$scope.population[5].SantaMonica,$scope.santa2016/$scope.population[6].SantaMonica,'compare_chart1')
+            }
+            if(my.sel1 === "Oakland"){
+                drawCharty($scope.oak2010/$scope.population[0].Oakland,$scope.oak2011/$scope.population[1].Oakland,$scope.oak2012/$scope.population[2].Oakland,$scope.oak2013/$scope.population[3].Oakland,$scope.oak2014/$scope.population[4].Oakland,$scope.oak2015/$scope.population[5].Oakland,$scope.oak2016/$scope.population[6].Oakland,'compare_chart1')
+            }
+
+
+            if( my.sel2 === "Kansas_City" ) {
+                drawCharty($scope.mydata2010 / $scope.population[0].Kansas_City, $scope.mydata2011 / $scope.population[1].Kansas_City, $scope.mydata2012 / $scope.population[2].Kansas_City, $scope.mydata2013 / $scope.population[3].Kansas_City, $scope.mydata2014 / $scope.population[4].Kansas_City, $scope.mydata2015 / $scope.population[5].Kansas_City, $scope.mydata2016 / $scope.population[6].Kansas_City, 'compare_chart2');
+            }
+            if(my.sel2 ==="New_York"){
+                drawCharty($scope.nyc2010/$scope.population[0].NewYork_City,$scope.nyc2011/$scope.population[1].NewYork_City,$scope.nyc2012/$scope.population[2].NewYork_City,$scope.nyc2013/$scope.population[3].NewYork_City,$scope.nyc2014/$scope.population[4].NewYork_City,$scope.nyc2015/$scope.population[5].NewYork_City,$scope.nyc2016/$scope.population[6].NewYork_City,'compare_chart2');
+            }
+            if(my.sel2 ==="Austin"){
+                drawCharty(0,0,0,0,$scope.au2014/$scope.population[4].Austin,$scope.au2015/$scope.population[5].Austin,$scope.au2016/$scope.population[6].Austin,'compare_chart2');
+            }
+            if(my.sel2 ==="Baton_Rouge"){
+                drawCharty(0,0,0,0,0,0,$scope.ba2016/$scope.population[6].Baton_Rouge,'compare_chart2');
+            }
+            if(my.sel2 === "Boston"){
+                drawCharty($scope.bsvalue2010/$scope.population[0].Boston,$scope.bsvalue2011/$scope.population[1].Boston,$scope.bsvalue2012/$scope.population[2].Boston,$scope.bsvalue2013/$scope.population[3].Boston,$scope.bsvalue2014/$scope.population[4].Boston,$scope.bsvalue2015/$scope.population[5].Boston,$scope.bsvalue2016/$scope.population[6].Boston,'compare_chart2');
+            }
+            if(my.sel2 === "Chattanooga"){
+                drawCharty($scope.ct2010/$scope.population[0].Chattanooga,$scope.ct2011/$scope.population[1].Chattanooga,$scope.ct2012/$scope.population[2].Chattanooga,$scope.ct2013/$scope.population[3].Chattanooga,$scope.ct2014/$scope.population[4].Chattanooga,$scope.ct2015/$scope.population[5].Chattanooga,$scope.ct2016/$scope.population[6].Chattanooga,'compare_chart2');
+            }
+            if(my.sel2 === "Chicago"){
+                drawCharty($scope.chvalue2010/$scope.population[0].chicago,$scope.chvalue2011/$scope.population[1].chicago,$scope.chvalue2012/$scope.population[2].chicago,$scope.chvalue2013/$scope.population[3].chicago,$scope.chvalue2014/$scope.population[4].chicago,$scope.chvalue2015/$scope.population[5].chicago,$scope.chvalue2016/$scope.population[6].chicago,'compare_chart2')
+            }
+            if(my.sel2 === "Gainesville"){
+                drawCharty(0,0,0,0,$scope.gain2014/$scope.population[4].Gainesville,$scope.gain2015/$scope.population[5].Gainesville,$scope.gain2016/$scope.population[6].Gainesville,'compare_chart2');
+            }
+            if(my.sel2 ==="Johns_Creek"){
+                drawCharty(0,0,0,0,0,$scope.jcvalue2015/$scope.population[5].JohnsCreek,$scope.jcvalue2016/$scope.population[6].JohnsCreek,'compare_chart2');
+            }
+            if(my.sel2 === "Minneapolis"){
+                drawCharty(0,$scope.mi2011/$scope.population[1].Minneapolis,$scope.mi2012/$scope.population[2].Minneapolis,$scope.mi2013/$scope.population[3].Minneapolis,$scope.mi2014/$scope.population[4].Minneapolis,$scope.mi2015/$scope.population[5].Minneapolis,$scope.mi2016/$scope.population[6].Minneapolis,'compare1_chart2');
+            }
+            if(my.sel2 === "New_Orleans"){
+                drawCharty(0,0,$scope.novalue2012/$scope.population[2].New_Orleans,$scope.novalue2013/$scope.population[3].New_Orleans,$scope.novalue2014/$scope.population[4].New_Orleans,$scope.novalue2015/$scope.population[5].New_Orleans,$scope.novalue2016/$scope.population[6].New_Orleans,'compare_chart2');
+            }
+            if(my.sel2 === "Philadelphia"){
+                drawCharty(0,0,0,0,$scope.phvalue2014/$scope.population[4].Philadelphia,$scope.phvalue2015/$scope.population[5].Philadelphia,$scope.phvalue2016/$scope.population[6].Philadelphia,'compare_chart2');
+            }
+            if(my.sel2 === "Sacramento"){
+                drawCharty(0,0,0,$scope.scvalue2013/$scope.population[3].Sacramento,$scope.scvalue2014/$scope.population[4].Sacramento,$scope.scvalue2015/$scope.population[5].Sacramento,$scope.scvalue2016/$scope.population[6].Sacramento,'compare_chart2');
+            }
+            if(my.sel2 === "San_Francisco"){
+                drawCharty($scope.sfvalue2010/$scope.population[0].San_Francisco,$scope.sfvalue2011/$scope.population[1].San_Francisco,$scope.sfvalue2012/$scope.population[2].San_Francisco,$scope.sfvalue2013/$scope.population[3].San_Francisco,$scope.sfvalue2014/$scope.population[4].San_Francisco,$scope.sfvalue2015/$scope.population[5].San_Francisco,$scope.sfvalue2016/$scope.population[6].San_Francisco,'compare_chart2')
+            }
+            if(my.sel2 === "Washington"){
+                drawCharty($scope.wdvalue2010 / $scope.population[0].Washington, $scope.wdvalue2011 / $scope.population[1].Washington, $scope.wdvalue2012 / $scope.population[2].Washington, $scope.wdvalue2013 / $scope.population[3].Washington, $scope.wdvalue2014 / $scope.population[4].Washington, $scope.wdvalue2015 / $scope.population[5].Washington, $scope.wdvalue2016 / $scope.population[6].Washington, 'compare_chart2')
+            }
+            if(my.sel2 === "Cincinnati"){
+                drawCharty(0,0,$scope.cin2012/$scope.population[2].Cincinnati,$scope.cin2013/$scope.population[3].Cincinnati,$scope.cin2014/$scope.population[4].Cincinnati,$scope.cin2015/$scope.population[5].Cincinnati,$scope.cin2016/$scope.population[6].Cincinnati,'compare_chart2')
+            }
+            if(my.sel2 === "Los_Angeles"){
+                drawCharty(0,0,0,0,0,$scope.lagraphvalue2015/$scope.population[5].LosAngeles,$scope.lagraphvalue2016/$scope.population[6].LosAngeles,'compare_chart2');
+            }
+            if(my.sel2 === "Santa_Monica"){
+                drawCharty($scope.santa2010/$scope.population[0].SantaMonica,$scope.santa2011/$scope.population[1].SantaMonica,$scope.santa2012/$scope.population[2].SantaMonica,$scope.santa2013/$scope.population[3].SantaMonica,$scope.santa2014/$scope.population[4].SantaMonica,$scope.santa2015/$scope.population[5].SantaMonica,$scope.santa2016/$scope.population[6].SantaMonica,'compare_chart2')
+            }
+            if(my.sel2 === "Oakland"){
+                drawCharty($scope.oak2010/$scope.population[0].Oakland,$scope.oak2011/$scope.population[1].Oakland,$scope.oak2012/$scope.population[2].Oakland,$scope.oak2013/$scope.population[3].Oakland,$scope.oak2014/$scope.population[4].Oakland,$scope.oak2015/$scope.population[5].Oakland,$scope.oak2016/$scope.population[6].Oakland,'compare_chart2')
+            }
+            $("#message1").hide();
+            $("#compare_chart1").show();
+            $("#compare_chart2").show();
+
+        },9000);
+
+    };
 
 
         $scope.kcfunction = function () {
@@ -38,7 +212,7 @@ app.controller("MinCtrl",function ($scope,$http) {
             $scope.nyc2015 =parseInt($scope.nycvalue[5].count_unique_key);
             $scope.nyc2016 =parseInt($scope.nycvalue[6].count_unique_key);
             drawChartx($scope.nyc2010,$scope.nyc2011,$scope.nyc2012,$scope.nyc2013,$scope.nyc2014,$scope.nyc2015,$scope.nyc2016, 'ny_chart1');
-            drawCharty($scope.nyc2010/$scope.population[0].NewYork_City,$scope.nyc2011/$scope.population[1].NewYork_City,$scope.nyc2012/$scope.population[2].NewYork_City,$scope.nyc2013/$scope.population[3].NewYork_City,$scope.nyc2014/$scope.population[4].NewYork_City,$scope.nyc2015/$scope.population[5].NewYork_City,$scope.nyc2016/$scope.population[6].NewYork_City,'ny_chart2')
+            drawCharty($scope.nyc2010/$scope.population[0].NewYork_City,$scope.nyc2011/$scope.population[1].NewYork_City,$scope.nyc2012/$scope.population[2].NewYork_City,$scope.nyc2013/$scope.population[3].NewYork_City,$scope.nyc2014/$scope.population[4].NewYork_City,$scope.nyc2015/$scope.population[5].NewYork_City,$scope.nyc2016/$scope.population[6].NewYork_City,'ny_chart2');
         });
     };
 
@@ -356,6 +530,49 @@ app.controller("MinCtrl",function ($scope,$http) {
     };
 
 
+    //chicago Api
+
+    $scope.chfunction = function () {
+
+        $http.get("https://data.cityofchicago.org/resource/6zsd-86xi.json?$select=date_extract_y(date)%20as%20year,count(case_number)&$group=year&$order=year").then(function (value) {
+            $scope.chvalue = value.data;
+            console.log($scope.chvalue);
+            $scope.chvalue2010 = $scope.chvalue[9].count_case_number;
+            $scope.chvalue2011 = $scope.chvalue[10].count_case_number;
+            $scope.chvalue2012 = $scope.chvalue[11].count_case_number;
+            $scope.chvalue2013 = $scope.chvalue[12].count_case_number;
+            $scope.chvalue2014 = $scope.chvalue[13].count_case_number;
+            $scope.chvalue2015 = $scope.chvalue[14].count_case_number;
+            $scope.chvalue2016 = $scope.chvalue[15].count_case_number;
+            drawChartx($scope.chvalue2010,$scope.chvalue2011,$scope.chvalue2012,$scope.chvalue2013,$scope.chvalue2014,$scope.chvalue2015,$scope.chvalue2016,'ch_chart1');
+            drawCharty($scope.chvalue2010/$scope.population[0].chicago,$scope.chvalue2011/$scope.population[1].chicago,$scope.chvalue2012/$scope.population[2].chicago,$scope.chvalue2013/$scope.population[3].chicago,$scope.chvalue2014/$scope.population[4].chicago,$scope.chvalue2015/$scope.population[5].chicago,$scope.chvalue2016/$scope.population[6].chicago,'ch_chart2')
+        })
+
+    };
+
+    //houston Api
+
+    $scope.hsfunction = function () {
+
+        $http.get("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272011-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272011-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value) {
+         $scope.hsvalue2011 = value.data.count;
+        console.log($scope.hsvalue2011);
+         $http.get("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272012-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272012-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value2) {
+             $scope.hsvalue2012 = value2.data.count;
+             $http.get("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272013-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272013-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value3) {
+              $scope.hsvalue2013 = value3.data.count;
+              $http.get("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272014-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272014-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value4) {
+                $scope.hsvalue2014 = value4.data.count;
+                $http.get("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272015-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272015-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value5) {
+                    $scope.hsvalue2015 = value5.data.count;
+                    $http.get("http://mycity.houstontx.gov/cohgis/rest/services/IT/BARC311_OpenData_wm/MapServer/0/query?where=SR_CREATE_DATE%20%3E%3D%20%272016-01-01T06%3A00%3A00.000Z%27%20AND%20SR_CREATE_DATE%20%3C%3D%20%272016-12-31T06%3A00%3A00.000Z%27&outFields=case_number&returnCountOnly=true&f=json").then(function (value6) {
+                       $scope.hsvalue2016 = value6.data.count;
+                       drawChartx(0,$scope.hsvalue2011,$scope.hsvalue2012,$scope.hsvalue2013,$scope.hsvalue2014,$scope.hsvalue2015,$scope.hsvalue2016,'hs_chart1');
+
+                    })})})})})});
+    };
+
+
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChartx);
         function drawChartx(var0, var1 , var2, var3, var4, var5, var6,var7) {
@@ -371,12 +588,18 @@ app.controller("MinCtrl",function ($scope,$http) {
             ]);
             var options = {
                 title: '311 call service requests ',
-                curveType: 'function',
                 legend: {position: 'bottom'},
+<<<<<<< HEAD
                 //changes made here
                 width:500
                 ,height:500,//till here default values width:900 and height:700
                 bar: {groupWidth: "50%"}
+=======
+                width:600
+                ,height:400,
+                bar: {groupWidth: "50%"},
+                colors : ['#e7711b']
+>>>>>>> 07e9c499165840d2ac37a32b25f142fae2eecfb8
             };
             var chart = new google.visualization.ColumnChart(document.getElementById(var7));
             chart.draw(data, options);
@@ -394,10 +617,15 @@ app.controller("MinCtrl",function ($scope,$http) {
             ]);
             var options = {
                 title: '311 call service requests Normilization ',
-                curveType: 'function',
                 legend: {position: 'bottom'},
+<<<<<<< HEAD
                 width:500//changes made here
                 ,height:500//till here
+=======
+                width:600
+                ,height:400,
+                colors : ['#e7711b']
+>>>>>>> 07e9c499165840d2ac37a32b25f142fae2eecfb8
             };
             var chart = new google.visualization.LineChart(document.getElementById(var7));
             chart.draw(data, options);
@@ -421,7 +649,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 296913,
             "Washington": 605183,
             "Oakland": 391724,
-            "SantaMonica": 89791
+            "SantaMonica": 89791,
+            "chicago" : 2697736
 
         },
         {
@@ -443,7 +672,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 296101,
             "Washington": 620477,
             "Oakland": 396515,
-            "SantaMonica": 90600
+            "SantaMonica": 90600,
+            "chicago" : 2705404
         },
         {
             "Year" : 2012,
@@ -464,7 +694,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 296794,
             "Washington": 635327,
             "Oakland": 401704,
-            "SantaMonica": 91508
+            "SantaMonica": 91508,
+            "chicago" : 2714120
         },
         {
             "Year" : 2013,
@@ -485,7 +716,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 297444,
             "Washington": 649165,
             "Oakland": 407205,
-            "SantaMonica": 92276
+            "SantaMonica": 92276,
+            "chicago" : 2718887
         },
         {
             "Year" : 2014,
@@ -506,7 +738,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 298100,
             "Washington": 659005,
             "Oakland": 413313,
-            "SantaMonica": 92346
+            "SantaMonica": 92346,
+            "chicago" : 2718530
         },
         {
             "Year" : 2015,
@@ -527,7 +760,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 298654,
             "Washington": 670377,
             "Oakland": 417870,
-            "SantaMonica": 92685
+            "SantaMonica": 92685,
+            "chicago" : 2713596
         },
         {
             "Year" : 2016,
@@ -548,7 +782,8 @@ app.controller("MinCtrl",function ($scope,$http) {
             "Cincinnati": 298800,
             "Washington": 681170,
             "Oakland": 420005,
-            "SantaMonica": 92478
+            "SantaMonica": 92478,
+            "chicago" : 2704958
         }
     ];
 });
