@@ -373,8 +373,9 @@ app.controller("MinCtrl",function ($scope,$http) {
                 title: '311 call service requests ',
                 curveType: 'function',
                 legend: {position: 'bottom'},
-                width:900
-                ,height:500,
+                //changes made here
+                width:500
+                ,height:500,//till here default values width:900 and height:700
                 bar: {groupWidth: "50%"}
             };
             var chart = new google.visualization.ColumnChart(document.getElementById(var7));
@@ -395,8 +396,8 @@ app.controller("MinCtrl",function ($scope,$http) {
                 title: '311 call service requests Normilization ',
                 curveType: 'function',
                 legend: {position: 'bottom'},
-                width:900
-                ,height:500
+                width:500//changes made here
+                ,height:500//till here
             };
             var chart = new google.visualization.LineChart(document.getElementById(var7));
             chart.draw(data, options);

@@ -49,13 +49,28 @@
         .image1{
             float: left;
         }
+        /*changed here*/
+        #oak_chart1{
+            float:left;
+        }
+        #oak_chart2{
+            float :left;
+        }
+#oakchart{
 
+    width:1100px;
+
+}
+        #oakland{
+            background-color: white;
+        }
+/*till here*/
     </style>
 </head>
-<body data-ng-app ="app" ng-controller="MinCtrl">
+<body data-ng-app ="app" ng-controller="MinCtrl" >
 <div class="container-fluid">
     <div class="row content">
-        <div class="col-sm-3 sidenav">
+        <div class="col-sm-3 sidenav" style="background-color: white;">
             <h3 class="text-success">City-Comparison</h3>
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a data-toggle="pill" href="#home">Home</a></li>
@@ -101,7 +116,7 @@
                 <li><a data-toggle="pill" href="#portland">Portland, OR</a></li>
             </ul><br>
         </div>
-        <div class="col-sm-9 container1">
+        <div class="col-sm-9 container1" style="background-color: white;">
             <div class="tab-content">
 
                 <div id="home" class="tab-pane fade in active">
@@ -1069,10 +1084,10 @@
 
                 <!--Oakland, CA-->
                 <div id="oakland" class="tab-pane fade ">
-                    <div class="row">
+                    <div class="row" style="width:1140px"><!--changes made here there is no style here-->
                         <h2 class="page-header text-center text-primary">Oakland</h2>
                         <div class="text-center">
-                            <div class="col-md-2"></div>
+                            <div class="col-md-1"></div>
                             <div class="col-md-4">
                                 <table class="table table-primary table-bodered text-primary text-center">
                                     <thead>
@@ -1089,7 +1104,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-1"></div>
+
+                            <div class="col-md-4" style="padding-left: 50px;"><!--change here include padding-->
                                 <table class="table table-primary table-bodered text-primary text-center">
                                     <thead>
                                     <tr class="text-center">
@@ -1107,9 +1124,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div id="oak_chart1" style="margin-left: 110px"></div>
-                        <div id="oak_chart2" style="margin-left: 110px"></div>
+                    <div class="row" id="oakchart">
+                        <div id="oak_chart1" style="margin-left: 60px"></div><!--changes made here changed margins-->
+                        <div id="oak_chart2" ></div>
                     </div>
                 </div>
 
